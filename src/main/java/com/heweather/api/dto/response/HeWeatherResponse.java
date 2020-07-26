@@ -5,7 +5,7 @@ import java.util.List;
 public class HeWeatherResponse {
     private String status;
     //
-    private LocationInfo location;
+    private List<LocationInfo> location;
     //
     private List<LocationInfo> topCityList;
     //
@@ -39,11 +39,11 @@ public class HeWeatherResponse {
         this.status = status;
     }
 
-    public LocationInfo getLocation() {
+    public List<LocationInfo> getLocation() {
         return location;
     }
 
-    public void setLocation(LocationInfo location) {
+    public void setLocation(List<LocationInfo> location) {
         this.location = location;
     }
 

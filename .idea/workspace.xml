@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="98e16699-1a53-4fe7-93f7-2025e58021c1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_6.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/heweather-java-sdk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/heweather-java-sdk.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/heweather/api/dto/response/HeWeatherResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/heweather/api/dto/response/HeWeatherResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/heweather/api/service/impl/HeWeatherServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/heweather/api/service/impl/HeWeatherServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +60,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/heweather/utils" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -72,7 +90,7 @@
       <workItem from="1595499068406" duration="3795000" />
       <workItem from="1595647393822" duration="3394000" />
       <workItem from="1595650800253" duration="6228000" />
-      <workItem from="1595727095466" duration="1519000" />
+      <workItem from="1595727095466" duration="3765000" />
     </task>
     <servers />
   </component>
@@ -99,10 +117,10 @@
       <screen x="-376" y="-1129" width="2048" height="1129" />
     </state>
     <state x="723" y="-910" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.826/-376.-1129.2048.1129@-376.-1129.2048.1129" timestamp="1595140586244" />
-    <state x="709" y="95" key="#com.intellij.ide.util.MemberChooser" timestamp="1595650481366">
-      <screen x="0" y="23" width="1440" height="826" />
+    <state x="632" y="-1030" key="#com.intellij.ide.util.MemberChooser" timestamp="1595731562518">
+      <screen x="-376" y="-1129" width="2048" height="1129" />
     </state>
-    <state x="632" y="-1030" key="#com.intellij.ide.util.MemberChooser/0.23.1440.826/-376.-1129.2048.1129@-376.-1129.2048.1129" timestamp="1595144848832" />
+    <state x="632" y="-1030" key="#com.intellij.ide.util.MemberChooser/0.23.1440.826/-376.-1129.2048.1129@-376.-1129.2048.1129" timestamp="1595731562518" />
     <state x="709" y="95" key="#com.intellij.ide.util.MemberChooser/0.23.1440.826@0.23.1440.826" timestamp="1595650481366" />
     <state x="336" y="119" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1595647301403">
       <screen x="0" y="23" width="1440" height="826" />
@@ -121,5 +139,9 @@
       <screen x="0" y="23" width="1440" height="826" />
     </state>
     <state x="354" y="46" key="new project wizard/0.23.1440.826@0.23.1440.826" timestamp="1595647198574" />
+    <state x="305" y="-899" width="670" height="676" key="search.everywhere.popup" timestamp="1595731360686">
+      <screen x="-376" y="-1129" width="2048" height="1129" />
+    </state>
+    <state x="305" y="-899" width="670" height="676" key="search.everywhere.popup/0.23.1440.826/-376.-1129.2048.1129@-376.-1129.2048.1129" timestamp="1595731360686" />
   </component>
 </project>
