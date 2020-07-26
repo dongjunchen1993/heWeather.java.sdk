@@ -9,7 +9,7 @@ public class HeWeatherResponse {
     //
     private List<LocationInfo> topCityList;
     //
-    private PoiInfo poi;
+    private List<PoiInfo> poi;
     //
     private WeatherInfoNow weatherInfoNow;
     //
@@ -55,11 +55,11 @@ public class HeWeatherResponse {
         this.topCityList = topCityList;
     }
 
-    public PoiInfo getPoi() {
+    public List<PoiInfo> getPoi() {
         return poi;
     }
 
-    public void setPoi(PoiInfo poi) {
+    public void setPoi(List<PoiInfo> poi) {
         this.poi = poi;
     }
 
