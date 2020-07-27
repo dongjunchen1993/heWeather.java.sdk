@@ -11,7 +11,7 @@ public class HeWeatherResponse {
     //
     private List<PoiInfo> poi;
     //
-    private WeatherInfoNow weatherInfoNow;
+    private WeatherInfo weatherInfo;
     //
     private Minutely minutely;
     //
@@ -63,12 +63,12 @@ public class HeWeatherResponse {
         this.poi = poi;
     }
 
-    public WeatherInfoNow getWeatherInfoNow() {
-        return weatherInfoNow;
+    public WeatherInfo getWeatherInfo() {
+        return weatherInfo;
     }
 
-    public void setWeatherInfoNow(WeatherInfoNow weatherInfoNow) {
-        this.weatherInfoNow = weatherInfoNow;
+    public void setWeatherInfo(WeatherInfo weatherInfo) {
+        this.weatherInfo = weatherInfo;
     }
 
     public Minutely getMinutely() {

@@ -5,8 +5,8 @@ import com.heweather.api.dto.response.HeWeatherResponse;
 public interface HeWeatherMunutelyService {
 
     //分钟及降水
-    HeWeatherResponse getMinutely(String laction ,String key);
+    HeWeatherResponse getMinutely(String location ,String key);
     //分钟级降水
-    HeWeatherResponse getMinutely(String laction ,String key,String lang);
+    HeWeatherResponse getMinutely(String location ,String key,String lang);
 
 }
