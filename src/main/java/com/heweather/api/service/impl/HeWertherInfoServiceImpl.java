@@ -8,6 +8,7 @@ import com.heweather.api.dto.response.WeatherInfo;
 import com.heweather.api.dto.response.weatherInfo.Daily;
 import com.heweather.api.dto.response.weatherInfo.Hourly;
 import com.heweather.api.dto.response.weatherInfo.Now;
+import com.heweather.api.dto.response.weatherInfo.Refer;
 import com.heweather.api.service.HeWertherInfoService;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -47,11 +48,11 @@ public class HeWertherInfoServiceImpl implements HeWertherInfoService {
             String json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);
             if (response.get("code").equals("200")) {
+                heWeatherResponse.setStatus("200");
+                heWeatherResponse.setUpdateTime(response.getString("updateTime"));
+                heWeatherResponse.setFxLink(response.getString("fxLink"));
                 if (response.containsKey("now")) {
-                    heWeatherResponse.setStatus("200");
                     WeatherInfo weatherInfo = new WeatherInfo();
-                    weatherInfo.setUpdateTime(response.getString("updateTime"));
-                    weatherInfo.setFxLink(response.getString("fxLink"));
                     Now now = new Now();
                     now.setCloud(response.getString("cloud"));
                     now.setDew(response.getString("dew"));
@@ -71,10 +72,7 @@ public class HeWertherInfoServiceImpl implements HeWertherInfoService {
                     weatherInfo.setNow(now);
                     heWeatherResponse.setWeatherInfo(weatherInfo);
                 } else if (response.containsKey("daily")) {
-                    heWeatherResponse.setStatus("200");
                     WeatherInfo weatherInfo = new WeatherInfo();
-                    weatherInfo.setUpdateTime(response.getString("updateTime"));
-                    weatherInfo.setFxLink(response.getString("fxLink"));
                     JSONArray dailyList = response.getJSONArray("daily");
                     List<JSONObject> list = JSONObject.parseArray(dailyList.toJSONString(), JSONObject.class);
                     List<Daily> dailies = new ArrayList<Daily>();
@@ -109,12 +107,18 @@ public class HeWertherInfoServiceImpl implements HeWertherInfoService {
                         dailies.add(daily);
                     }
                     weatherInfo.setDaily(dailies);
+                    Refer refer = new Refer();
+                    JSONObject refer1 = response.getJSONObject("refer");
+                    JSONArray sources = refer1.getJSONArray("sources");
+                    List<String> sourcesList = JSONObject.parseArray(sources.toJSONString(), String.class);
+                    JSONArray license = refer1.getJSONArray("license");
+                    List<String> licenseList = JSONObject.parseArray(license.toJSONString(), String.class);
+                    refer.setLicense(sourcesList);
+                    refer.setSources(licenseList);
+                    weatherInfo.setRefer(refer);
                     heWeatherResponse.setWeatherInfo(weatherInfo);
                 } else if (response.containsKey("hourly")) {
-                    heWeatherResponse.setStatus("200");
                     WeatherInfo weatherInfo = new WeatherInfo();
-                    weatherInfo.setUpdateTime(response.getString("updateTime"));
-                    weatherInfo.setFxLink(response.getString("fxLink"));
                     JSONArray hourlyList = response.getJSONArray("hourly");
                     List<JSONObject> list = JSONObject.parseArray(hourlyList.toJSONString(), JSONObject.class);
                     List<Hourly> hourlyes = new ArrayList<Hourly>();

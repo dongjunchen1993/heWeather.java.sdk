@@ -4,6 +4,10 @@ import java.util.List;
 
 public class HeWeatherResponse {
     private String status;
+    //当前API的最近更新时间
+    private String updateTime;
+    //该城市的天气预报和实况自适应网页，可嵌入网站或应用
+    private String fxLink;
     //
     private List<LocationInfo> location;
     //
@@ -30,6 +34,22 @@ public class HeWeatherResponse {
     private WeatherAirHistory airHistory;
     //
     private SunMoonData sunMoonData;
+
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public String getFxLink() {
+        return fxLink;
+    }
+
+    public void setFxLink(String fxLink) {
+        this.fxLink = fxLink;
+    }
 
     public String getStatus() {
         return status;

@@ -10,6 +10,10 @@ public enum ENUM_WHEATHER_TIME {
      */
     NOW_DAY_WEATHER("now?","实况天气"),
     /**
+     * 1天预报
+     */
+    ONE_DAY_WEATHER("1d?","1天预报"),
+    /**
      * 3天预报
      */
     THREE_DAY_WEATHER("3d?","3天预报"),
