@@ -6,7 +6,7 @@ import com.heweather.api.dto.ApiEnum;
 import com.heweather.api.dto.response.HeWeatherResponse;
 import com.heweather.api.dto.response.WeatherIndices;
 import com.heweather.api.dto.response.indices.Daily;
-import com.heweather.api.dto.response.weatherInfo.Refer;
+import com.heweather.api.dto.response.weatherinfo.Refer;
 import com.heweather.api.service.HeWeatherIndicesService;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -22,43 +22,44 @@ import java.util.List;
  */
 public class HeWeatherIndicesServiceImpl implements HeWeatherIndicesService {
 
+    String URL = "https://api.heweather.net/v7/indices/";
+    @Override
     public HeWeatherResponse getWeatherIndices(String location, String key, String type, String lang, ApiEnum apiEnum) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://api.heweather.net/v7/indices/";
         if (apiEnum != null && !apiEnum.getName().equals("")) {
-            url = url + apiEnum.getValue();
+            URL = URL + apiEnum.getValue();
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (location != null && !location.equals("")) {
-            url = url + "location" + location;
+            URL = URL + "location" + location;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&key" + key;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (type != null && !type.equals("")) {
-            url = url + "&type" + type;
+            URL = URL + "&type" + type;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (lang != null && !lang.equals("")) {
-            url = url + "&lang" + lang;
+            URL = URL + "&lang" + lang;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             String json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);
@@ -98,38 +99,38 @@ public class HeWeatherIndicesServiceImpl implements HeWeatherIndicesService {
         }
         return heWeatherResponse;
     }
-
+    @Override
     public HeWeatherResponse getWeatherIndices(String location, String key, String type, ApiEnum apiEnum) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://api.heweather.net/v7/indices/";
+
         if (apiEnum != null && !apiEnum.getName().equals("")) {
-            url = url + apiEnum.getValue();
+            URL = URL + apiEnum.getValue();
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (location != null && !location.equals("")) {
-            url = url + "location" + location;
+            URL = URL + "location" + location;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&key" + key;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (type != null && !type.equals("")) {
-            url = url + "&type" + type;
+            URL = URL + "&type" + type;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             String json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);

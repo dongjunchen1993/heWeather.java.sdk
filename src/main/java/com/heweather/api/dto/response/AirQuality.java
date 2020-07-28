@@ -1,9 +1,9 @@
 package com.heweather.api.dto.response;
 
-import com.heweather.api.dto.response.airQualit.Daily;
-import com.heweather.api.dto.response.airQualit.Now;
-import com.heweather.api.dto.response.airQualit.Station;
-import com.heweather.api.dto.response.weatherInfo.Refer;
+import com.heweather.api.dto.response.air.Daily;
+import com.heweather.api.dto.response.air.Now;
+import com.heweather.api.dto.response.air.Station;
+import com.heweather.api.dto.response.weatherinfo.Refer;
 
 import java.util.List;
 

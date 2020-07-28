@@ -1,4 +1,4 @@
-package com.heweather.api.dto.response.airQualit;
+package com.heweather.api.dto.response.air;
 
 public class Now {
     private String pubTime;//	实时空气质量数据发布时间	2013-12-30T01:45+08:00

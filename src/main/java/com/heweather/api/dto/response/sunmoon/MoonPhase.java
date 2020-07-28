@@ -1,4 +1,4 @@
-package com.heweather.api.dto.response.sumMoon;
+package com.heweather.api.dto.response.sunmoon;
 
 public class MoonPhase {
 

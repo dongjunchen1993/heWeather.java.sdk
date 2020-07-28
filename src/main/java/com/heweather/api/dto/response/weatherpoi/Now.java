@@ -1,4 +1,4 @@
-package com.heweather.api.dto.response.weatherPoi;
+package com.heweather.api.dto.response.weatherpoi;
 
 public class Now {
     private String obsTime; //实况观测时间; //2013-12-30T01:45+08:00

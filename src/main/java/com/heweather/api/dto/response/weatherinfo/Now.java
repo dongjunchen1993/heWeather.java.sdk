@@ -1,4 +1,4 @@
-package com.heweather.api.dto.response.weatherInfo;
+package com.heweather.api.dto.response.weatherinfo;
 
 public class Now {
 

@@ -1,7 +1,7 @@
 package com.heweather.api.dto.response;
 
 import com.heweather.api.dto.response.indices.Daily;
-import com.heweather.api.dto.response.weatherInfo.Refer;
+import com.heweather.api.dto.response.weatherinfo.Refer;
 
 import java.util.List;
 

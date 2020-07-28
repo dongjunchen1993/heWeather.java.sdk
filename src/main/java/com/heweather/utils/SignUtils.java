@@ -3,10 +3,7 @@ package com.heweather.utils;
 import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 public class SignUtils {
     /**
@@ -52,5 +49,21 @@ public class SignUtils {
             out[var5++] = toDigits[15 & data[i]];
         }
         return out;
+    }
+
+    public static void main(String[] args) {
+        String key = "HE2006141618541902";
+        HashMap<String, String> params = new HashMap<>();
+        params.put("location","101010100");
+        params.put("t",String.valueOf(new Date().getTime()));
+        params.put("publicid","HE2006141618541902");
+        try{
+            String signature = SignUtils.getSignature(params, key);
+            System.out.println(signature);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
     }
 }

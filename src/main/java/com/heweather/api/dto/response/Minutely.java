@@ -1,6 +1,6 @@
 package com.heweather.api.dto.response;
 
-import com.heweather.api.dto.response.weatherInfo.Refer;
+import com.heweather.api.dto.response.weatherinfo.Refer;
 /**
  * 分钟级降水实体类
  */

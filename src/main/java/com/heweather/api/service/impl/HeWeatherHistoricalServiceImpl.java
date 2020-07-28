@@ -15,7 +15,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
  * add by djc
  */
 public class HeWeatherHistoricalServiceImpl implements HeWeatherHistoricalService {
-
+    @Override
     public HeWeatherResponse getWeatherPoi(TypeEnum enum_type_code, String location, String key, String date) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
@@ -54,7 +54,7 @@ public class HeWeatherHistoricalServiceImpl implements HeWeatherHistoricalServic
         }
         return null;
     }
-
+    @Override
     public HeWeatherResponse getWeatherPoi(TypeEnum enum_type_code, String location, String key, String date, String lang, UnitEnum enum_unit_code) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();

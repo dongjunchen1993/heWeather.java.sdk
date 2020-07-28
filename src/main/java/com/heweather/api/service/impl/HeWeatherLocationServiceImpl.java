@@ -21,25 +21,26 @@ import java.util.List;
 
 public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
 
+    @Override
     public HeWeatherResponse getLocation(String location, String key) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://geoapi.heweather.net/v2/city/lookup?";
+        String URL = "https://geoapi.heweather.net/v2/city/lookup?";
         if (location != null && !location.equals("")) {
-            url = url + "location" + location;
+            URL = URL + "location" + location;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&key" + key;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             String json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);
@@ -75,42 +76,43 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
         return heWeatherResponse;
     }
 
+    @Override
     public HeWeatherResponse getLocation(String location, String key, String adm, String range, Integer number, String lang) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://geoapi.heweather.net/v2/city/lookup?";
+        String URL = "https://geoapi.heweather.net/v2/city/lookup?";
         if (location != null && !location.equals("")) {
-            url = url + "location" + location;
+            URL = URL + "location" + location;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&key" + key;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (adm != null && !adm.equals("")) {
-            url = url + "&adm" + adm;
+            URL = URL + "&adm" + adm;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (range != null && !range.equals("")) {
-            url = url + "&range" + range;
+            URL = URL + "&range" + range;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (number != null && !number.equals("")) {
-            url = url + "&number" + number;
+            URL = URL + "&number" + number;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (lang != null && !lang.equals("")) {
-            url = url + "&lang" + lang;
+            URL = URL + "&lang" + lang;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
@@ -118,7 +120,7 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
 
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             String json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);
@@ -154,37 +156,38 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
         return heWeatherResponse;
     }
 
+    @Override
     public HeWeatherResponse getLocation(String location, String key, String adm, String range) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://geoapi.heweather.net/v2/city/lookup?";
+        String URL = "https://geoapi.heweather.net/v2/city/lookup?";
         if (location != null && !location.equals("")) {
-            url = url + "location" + location;
+            URL = URL + "location" + location;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&key" + key;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (adm != null && !adm.equals("")) {
-            url = url + "&adm" + adm;
+            URL = URL + "&adm" + adm;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (range != null && !range.equals("")) {
-            url = url + "&range" + range;
+            URL = URL + "&range" + range;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             String json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);
@@ -220,13 +223,13 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
         return heWeatherResponse;
     }
 
-
+    @Override
     public HeWeatherResponse getTopLocation(String key) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://geoapi.heweather.net/v2/city/top?";
+        String URL = "https://geoapi.heweather.net/v2/city/top?";
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&key" + key;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
@@ -234,7 +237,7 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
         try {
             String json = "";
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);
@@ -270,30 +273,31 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
         return heWeatherResponse;
     }
 
+    @Override
     public HeWeatherResponse getTopLocation(String key, String range, Integer number, String lang) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://geoapi.heweather.net/v2/city/top?";
+        String URL = "https://geoapi.heweather.net/v2/city/top?";
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&key" + key;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (range != null && !range.equals("")) {
-            url = url + "&range" + range;
+            URL = URL + "&range" + range;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (number != null && !number.equals("")) {
-            url = url + "&number" + number;
+            URL = URL + "&number" + number;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (lang != null && !lang.equals("")) {
-            url = url + "&lang" + lang;
+            URL = URL + "&lang" + lang;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
@@ -301,7 +305,7 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
         try {
             String json = "";
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);
@@ -336,33 +340,33 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
         }
         return heWeatherResponse;
     }
-
+    @Override
     public HeWeatherResponse getTopLocation(String key, String adm, String range, String lang) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://geoapi.heweather.net/v2/city/top?";
+        String URL = "https://geoapi.heweather.net/v2/city/top?";
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&key" + key;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
 
         if (adm != null && !adm.equals("")) {
-            url = url + "&adm" + adm;
+            URL = URL + "&adm" + adm;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
 
         if (range != null && !range.equals("")) {
-            url = url + "&range" + range;
+            URL = URL + "&range" + range;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (lang != null && !lang.equals("")) {
-            url = url + "&lang" + lang;
+            URL = URL + "&lang" + lang;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
@@ -370,7 +374,7 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
         try {
             String json = "";
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);
@@ -405,25 +409,25 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
         }
         return heWeatherResponse;
     }
-
+    @Override
     public HeWeatherResponse getLookupPoiLocation(String location, String key, String type) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://geoapi.heweather.net/v2/poi/lookup?";
+        String URL = "https://geoapi.heweather.net/v2/poi/lookup?";
         if (location != null && !location.equals("")) {
-            url = url + "location" + location;
+            URL = URL + "location" + location;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&key" + key;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (type != null && !type.equals("")) {
-            url = url + "&type" + type;
+            URL = URL + "&type" + type;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
@@ -431,7 +435,7 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
 
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             String json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);
@@ -465,50 +469,50 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
         }
         return heWeatherResponse;
     }
-
+    @Override
     public HeWeatherResponse getLookupPoiLocation(String location, String key, String type, String city, Integer number, String lang) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://geoapi.heweather.net/v2/poi/lookup?";
+        String URL = "https://geoapi.heweather.net/v2/poi/lookup?";
         if (location != null && !location.equals("")) {
-            url = url + "location" + location;
+            URL = URL + "location" + location;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&key" + key;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (type != null && !type.equals("")) {
-            url = url + "&type" + type;
+            URL = URL + "&type" + type;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (city != null && !city.equals("")) {
-            url = url + "&city" + city;
+            URL = URL + "&city" + city;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (number != null && !number.equals("")) {
-            url = url + "&number" + number;
+            URL = URL + "&number" + number;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (lang != null && !lang.equals("")) {
-            url = url + "&lang" + lang;
+            URL = URL + "&lang" + lang;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             String json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);
@@ -543,31 +547,32 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
         return heWeatherResponse;
     }
 
+    @Override
     public HeWeatherResponse getRangePoiLocation(String location, String key, String type) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://geoapi.heweather.net/v2/poi/range?";
+        String URL = "https://geoapi.heweather.net/v2/poi/range?";
         if (location != null && !location.equals("")) {
-            url = url + "location" + location;
+            URL = URL + "location" + location;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&key" + key;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (type != null && !type.equals("")) {
-            url = url + "&type" + type;
+            URL = URL + "&type" + type;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             String json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);
@@ -603,49 +608,50 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
 
     }
 
+    @Override
     public HeWeatherResponse getRangePoiLocation(String location, String key, String type, Integer radius, Integer number, String lang) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://geoapi.heweather.net/v2/poi/range?";
+        String URL = "https://geoapi.heweather.net/v2/poi/range?";
         if (location != null && !location.equals("")) {
-            url = url + "location" + location;
+            URL = URL + "location" + location;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&key" + key;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (type != null && !type.equals("")) {
-            url = url + "&type" + type;
+            URL = URL + "&type" + type;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (number != null && !number.equals("")) {
-            url = url + "&number" + number;
+            URL = URL + "&number" + number;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (radius != null && !radius.equals("")) {
-            url = url + "&radius" + radius;
+            URL = URL + "&radius" + radius;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (lang != null && !lang.equals("")) {
-            url = url + "&lang" + lang;
+            URL = URL + "&lang" + lang;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             String json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);

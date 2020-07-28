@@ -1,4 +1,4 @@
-package com.heweather.api.dto.response.airQualit;
+package com.heweather.api.dto.response.air;
 
 public class Station {
     private String pubTime;//	监测站实时空气质量数据发布时间，仅在国控站点的城市中返回。	2013-12-30T01:45+08:00

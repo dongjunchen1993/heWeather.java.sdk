@@ -15,25 +15,26 @@ import org.apache.http.impl.client.DefaultHttpClient;
  */
 public class HeWeatherMunutelyServiceImpl implements HeWeatherMunutelyService {
 
+    @Override
     public HeWeatherResponse getMinutely(String location, String key) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://api.heweather.net/v7/minutely/5m?";
+        String URL = "https://api.heweather.net/v7/minutely/5m?";
         if (location != null && !location.equals("")) {
-            url = url + "location" + location;
+            URL = URL + "location" + location;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&key" + key;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             String json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);
@@ -56,31 +57,32 @@ public class HeWeatherMunutelyServiceImpl implements HeWeatherMunutelyService {
         return heWeatherResponse;
     }
 
+    @Override
     public HeWeatherResponse getMinutely(String location, String key, String lang) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://api.heweather.net/v7/minutely/5m?";
+        String URL = "https://api.heweather.net/v7/minutely/5m?";
         if (location != null && !location.equals("")) {
-            url = url + "location" + location;
+            URL = URL + "location" + location;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&key" + key;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (lang != null && !lang.equals("")) {
-            url = url + "&lang" + lang;
+            URL = URL + "&lang" + lang;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             String json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);

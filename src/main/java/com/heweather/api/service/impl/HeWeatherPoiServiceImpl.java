@@ -6,9 +6,9 @@ import com.heweather.api.dto.UnitEnum;
 import com.heweather.api.dto.ApiEnum;
 import com.heweather.api.dto.response.HeWeatherResponse;
 import com.heweather.api.dto.response.WeatherPoiInfo;
-import com.heweather.api.dto.response.weatherInfo.Refer;
-import com.heweather.api.dto.response.weatherPoi.Daily;
-import com.heweather.api.dto.response.weatherPoi.Now;
+import com.heweather.api.dto.response.weatherinfo.Refer;
+import com.heweather.api.dto.response.weatherpoi.Daily;
+import com.heweather.api.dto.response.weatherpoi.Now;
 import com.heweather.api.service.HeWeatherPoiService;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -24,37 +24,38 @@ import java.util.List;
  */
 public class HeWeatherPoiServiceImpl implements HeWeatherPoiService {
 
+    @Override
     public HeWeatherResponse getWeatherPoi(ApiEnum apiEnum, UnitEnum enum_unit_code, String location, String key, String lang) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://api.heweather.net/v7/weather-poi/";
+        String URL = "https://api.heweather.net/v7/weather-poi/";
         if (apiEnum != null && !apiEnum.getName().equals("")) {
-            url = url + apiEnum.getValue();
+            URL = URL + apiEnum.getValue();
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (location != null && !location.equals("")) {
-            url = url + "location" + location;
+            URL = URL + "location" + location;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&key" + key;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (enum_unit_code != null && !enum_unit_code.getName().equals("")) {
-            url = url + enum_unit_code.getValue();
+            URL = URL + enum_unit_code.getValue();
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             String json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);
@@ -128,31 +129,32 @@ public class HeWeatherPoiServiceImpl implements HeWeatherPoiService {
         return heWeatherResponse;
     }
 
+    @Override
     public HeWeatherResponse getWeatherPoi(ApiEnum apiEnum, String location, String key) {
         
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://api.heweather.net/v7/weather-poi/";
+        String URL = "https://api.heweather.net/v7/weather-poi/";
         if (apiEnum != null && !apiEnum.getName().equals("")) {
-            url = url + apiEnum.getValue();
+            URL = URL + apiEnum.getValue();
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (location != null && !location.equals("")) {
-            url = url + "location" + location;
+            URL = URL + "location" + location;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&key" + key;
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             String json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);

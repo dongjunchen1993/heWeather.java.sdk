@@ -5,10 +5,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.heweather.api.dto.ApiEnum;
 import com.heweather.api.dto.response.AirQuality;
 import com.heweather.api.dto.response.HeWeatherResponse;
-import com.heweather.api.dto.response.airQualit.Daily;
-import com.heweather.api.dto.response.airQualit.Now;
-import com.heweather.api.dto.response.airQualit.Station;
-import com.heweather.api.dto.response.weatherInfo.Refer;
+import com.heweather.api.dto.response.air.Daily;
+import com.heweather.api.dto.response.air.Now;
+import com.heweather.api.dto.response.air.Station;
+import com.heweather.api.dto.response.weatherinfo.Refer;
 import com.heweather.api.service.HeWeatherAirService;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -16,6 +16,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -24,37 +25,42 @@ import java.util.List;
  */
 public class HeWeatherAirServiceImpl implements HeWeatherAirService {
 
+    @Override
     public HeWeatherResponse getWeatherAir(String location, String key, String lang, ApiEnum apiEnum) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://api.heweather.net/v7/air/";
+        String URL = "https://api.heweather.net/v7/air/";
+        HashMap<String, String> params = new HashMap<>();
         if (apiEnum != null && !apiEnum.getName().equals("")) {
-            url = url + apiEnum.getValue();
+            URL = URL + apiEnum.getValue();
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (location != null && !location.equals("")) {
-            url = url + "&location" + location;
+            URL = URL + "&location" + location;
+            params.put("location",location);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&key" + key;
+            params.put("key",key);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (lang != null && !lang.equals("")) {
-            url = url + "&lang" + lang;
+            URL = URL + "&lang" + lang;
+            params.put("lang",lang);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             String json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);
@@ -139,31 +145,35 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
         return heWeatherResponse;
     }
 
+    @Override
     public HeWeatherResponse getWeatherAir(String location, String key, ApiEnum apiEnum) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://api.heweather.net/v7/air/";
+        String URL = "https://api.heweather.net/v7/air/";
+        HashMap<String, String> params = new HashMap<>();
         if (apiEnum != null && !apiEnum.getName().equals("")) {
-            url = url + apiEnum.getValue();
+            URL = URL + apiEnum.getValue();
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (location != null && !location.equals("")) {
-            url = url + "&location" + location;
+            URL = URL + "&location" + location;
+            params.put("location",location);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&key" + key;
+            params.put("key",key);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         try {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             String json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);

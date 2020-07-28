@@ -1,4 +1,4 @@
-package com.heweather.api.dto.response.weatherInfo;
+package com.heweather.api.dto.response.weatherinfo;
 
 public class Daily {
     private String fxDate; //预报日期; //2013-05-31

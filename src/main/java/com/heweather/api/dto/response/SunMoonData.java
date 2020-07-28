@@ -1,7 +1,7 @@
 package com.heweather.api.dto.response;
 
-import com.heweather.api.dto.response.sumMoon.MoonPhase;
-import com.heweather.api.dto.response.weatherInfo.Refer;
+import com.heweather.api.dto.response.sunmoon.MoonPhase;
+import com.heweather.api.dto.response.weatherinfo.Refer;
 
 /**
  * 太阳和月亮

@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.heweather.api.dto.response.HeWeatherResponse;
 import com.heweather.api.dto.response.SunMoonData;
-import com.heweather.api.dto.response.sumMoon.MoonPhase;
-import com.heweather.api.dto.response.weatherInfo.Refer;
+import com.heweather.api.dto.response.sunmoon.MoonPhase;
+import com.heweather.api.dto.response.weatherinfo.Refer;
 import com.heweather.api.service.HeWeatherAstronomyService;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -19,7 +19,7 @@ import java.util.List;
  * add by djc
  */
 public class HeWeatherAstronomyServiceImpl implements HeWeatherAstronomyService {
-
+    @Override
     public HeWeatherResponse geitSunmoon(String location, String key, String date) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
@@ -81,7 +81,7 @@ public class HeWeatherAstronomyServiceImpl implements HeWeatherAstronomyService 
         return heWeatherResponse;
     }
 
-
+    @Override
     public HeWeatherResponse geitSunmoon(String location, String key, String date, String lang) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();

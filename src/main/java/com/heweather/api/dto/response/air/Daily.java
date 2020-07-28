@@ -1,4 +1,4 @@
-package com.heweather.api.dto.response.airQualit;
+package com.heweather.api.dto.response.air;
 
 public class Daily {
     private String fxDate;//	空气质量逐天预报日期	2018-05-31
