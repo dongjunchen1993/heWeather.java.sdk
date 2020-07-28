@@ -9,8 +9,14 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+/**
+ * 分钟级降水
+ * add by djc
+ */
 public class HeWeatherMunutelyServiceImpl implements HeWeatherMunutelyService {
+
     public HeWeatherResponse getMinutely(String location, String key) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://api.heweather.net/v7/minutely/5m?";
         if (location != null && !location.equals("")) {
@@ -25,7 +31,7 @@ public class HeWeatherMunutelyServiceImpl implements HeWeatherMunutelyService {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
-        try{
+        try {
             HttpClient httpClient = new DefaultHttpClient();
             HttpGet httpGet = new HttpGet(url);
             HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -43,7 +49,7 @@ public class HeWeatherMunutelyServiceImpl implements HeWeatherMunutelyService {
                 minutely.setType(minutely1.getString("type"));
                 heWeatherResponse.setMinutely(minutely);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             heWeatherResponse.setStatus("400");
         }
@@ -51,6 +57,7 @@ public class HeWeatherMunutelyServiceImpl implements HeWeatherMunutelyService {
     }
 
     public HeWeatherResponse getMinutely(String location, String key, String lang) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://api.heweather.net/v7/minutely/5m?";
         if (location != null && !location.equals("")) {
@@ -71,7 +78,7 @@ public class HeWeatherMunutelyServiceImpl implements HeWeatherMunutelyService {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
-        try{
+        try {
             HttpClient httpClient = new DefaultHttpClient();
             HttpGet httpGet = new HttpGet(url);
             HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -89,7 +96,7 @@ public class HeWeatherMunutelyServiceImpl implements HeWeatherMunutelyService {
                 minutely.setType(minutely1.getString("type"));
                 heWeatherResponse.setMinutely(minutely);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             heWeatherResponse.setStatus("400");
         }

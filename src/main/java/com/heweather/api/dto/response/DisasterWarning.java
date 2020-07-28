@@ -5,6 +5,11 @@ import com.heweather.api.dto.response.weatherInfo.Refer;
 
 import java.util.List;
 
+/**
+ * 天气灾害预警实体类
+ *
+ * @author djc
+ */
 public class DisasterWarning {
 
     private List<Warning> warning;

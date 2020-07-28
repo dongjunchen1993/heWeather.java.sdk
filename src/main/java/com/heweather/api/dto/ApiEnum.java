@@ -2,9 +2,10 @@ package com.heweather.api.dto;
 
 /**
  * @author Djc
- * 天气标识
+ * 接口标识
  */
 public enum ApiEnum {
+
     /**
      * 实况天气
      */

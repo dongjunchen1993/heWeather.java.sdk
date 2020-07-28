@@ -18,9 +18,14 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 天气预报和实况
+ * add by djc
+ */
 public class HeWertherInfoServiceImpl implements HeWertherInfoService {
 
     public HeWeatherResponse getWeatherInfo(String location, String key, ApiEnum apiEnum) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://api.heweather.net/v7/weather/";
         if (apiEnum != null && !apiEnum.getName().equals("")) {
@@ -144,7 +149,7 @@ public class HeWertherInfoServiceImpl implements HeWertherInfoService {
                     heWeatherResponse.setWeatherInfo(weatherInfo);
                 }
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             heWeatherResponse.setStatus("400");
         }
@@ -278,10 +283,10 @@ public class HeWertherInfoServiceImpl implements HeWertherInfoService {
                     heWeatherResponse.setWeatherInfo(weatherInfo);
                 }
             }
-            } catch(Exception e){
-                e.printStackTrace();
-                heWeatherResponse.setStatus("400");
-            }
-            return heWeatherResponse;
+        } catch (Exception e) {
+            e.printStackTrace();
+            heWeatherResponse.setStatus("400");
         }
+        return heWeatherResponse;
     }
+}

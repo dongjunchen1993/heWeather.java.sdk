@@ -18,8 +18,14 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 空气质量请求处理
+ * add by djc
+ */
 public class HeWeatherAirServiceImpl implements HeWeatherAirService {
+
     public HeWeatherResponse getWeatherAir(String location, String key, String lang, ApiEnum apiEnum) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://api.heweather.net/v7/air/";
         if (apiEnum != null && !apiEnum.getName().equals("")) {
@@ -46,7 +52,7 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
-        try{
+        try {
             HttpClient httpClient = new DefaultHttpClient();
             HttpGet httpGet = new HttpGet(url);
             HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -70,10 +76,10 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
                     now.setPrimary(nowobj.getString("primary"));
                     now.setPubTime(nowobj.getString("pubTime"));
                     now.setSo2(nowobj.getString("so2"));
-                    JSONArray stationes= response.getJSONArray("station");
+                    JSONArray stationes = response.getJSONArray("station");
                     List<Station> stationList = new ArrayList<Station>();
                     List<JSONObject> list = JSONObject.parseArray(stationes.toJSONString(), JSONObject.class);
-                    for(JSONObject jsonObject: list){
+                    for (JSONObject jsonObject : list) {
                         Station station = new Station();
                         station.setAqi(jsonObject.getString("api"));
                         station.setCategory(jsonObject.getString("category"));
@@ -102,11 +108,11 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
                     airQuality.setStation(stationList);
                     airQuality.setRefer(refer);
                     heWeatherResponse.setAirQuality(airQuality);
-                }else if (response.containsKey("daily")){
+                } else if (response.containsKey("daily")) {
                     List<Daily> dailyList = new ArrayList<Daily>();
-                    JSONArray dailies= response.getJSONArray("station");
+                    JSONArray dailies = response.getJSONArray("station");
                     List<JSONObject> list = JSONObject.parseArray(dailies.toJSONString(), JSONObject.class);
-                    for(JSONObject jsonObject:list){
+                    for (JSONObject jsonObject : list) {
                         Daily daily = new Daily();
                         daily.setAqi(jsonObject.getString("aqi"));
                         daily.setCategory(jsonObject.getString("category"));
@@ -126,7 +132,7 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
                     airQuality.setRefer(refer);
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             heWeatherResponse.setStatus("400");
         }
@@ -134,6 +140,7 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
     }
 
     public HeWeatherResponse getWeatherAir(String location, String key, ApiEnum apiEnum) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://api.heweather.net/v7/air/";
         if (apiEnum != null && !apiEnum.getName().equals("")) {
@@ -154,7 +161,7 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
-        try{
+        try {
             HttpClient httpClient = new DefaultHttpClient();
             HttpGet httpGet = new HttpGet(url);
             HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -178,10 +185,10 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
                     now.setPrimary(nowobj.getString("primary"));
                     now.setPubTime(nowobj.getString("pubTime"));
                     now.setSo2(nowobj.getString("so2"));
-                    JSONArray stationes= response.getJSONArray("station");
+                    JSONArray stationes = response.getJSONArray("station");
                     List<Station> stationList = new ArrayList<Station>();
                     List<JSONObject> list = JSONObject.parseArray(stationes.toJSONString(), JSONObject.class);
-                    for(JSONObject jsonObject: list){
+                    for (JSONObject jsonObject : list) {
                         Station station = new Station();
                         station.setAqi(jsonObject.getString("api"));
                         station.setCategory(jsonObject.getString("category"));
@@ -210,11 +217,11 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
                     airQuality.setStation(stationList);
                     airQuality.setRefer(refer);
                     heWeatherResponse.setAirQuality(airQuality);
-                }else if (response.containsKey("daily")){
+                } else if (response.containsKey("daily")) {
                     List<Daily> dailyList = new ArrayList<Daily>();
-                    JSONArray dailies= response.getJSONArray("station");
+                    JSONArray dailies = response.getJSONArray("station");
                     List<JSONObject> list = JSONObject.parseArray(dailies.toJSONString(), JSONObject.class);
-                    for(JSONObject jsonObject:list){
+                    for (JSONObject jsonObject : list) {
                         Daily daily = new Daily();
                         daily.setAqi(jsonObject.getString("aqi"));
                         daily.setCategory(jsonObject.getString("category"));
@@ -234,7 +241,7 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
                     airQuality.setRefer(refer);
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             heWeatherResponse.setStatus("400");
         }

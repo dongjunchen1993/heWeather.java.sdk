@@ -8,6 +8,8 @@ import com.heweather.api.dto.response.weatherInfo.Refer;
 import java.util.List;
 
 /**
+ * 空气质量实体类
+ *
  * @author djc
  */
 public class AirQuality {

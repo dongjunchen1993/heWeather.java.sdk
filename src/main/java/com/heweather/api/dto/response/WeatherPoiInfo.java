@@ -6,8 +6,12 @@ import com.heweather.api.dto.response.weatherPoi.Now;
 
 import java.util.List;
 
+/**
+ * POI天气实体类
+ */
 public class WeatherPoiInfo {
-    private Now now ;
+
+    private Now now;
 
     private List<Daily> dailyList;
 

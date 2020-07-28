@@ -1,8 +1,12 @@
 package com.heweather.api.dto.response;
 
+/**
+ * POI信息实体类
+ */
 public class PoiInfo {
+
     private String name;
-    private String id ;
+    private String id;
     private String lat;
     private String lon;
     private String adm2;

@@ -1,7 +1,9 @@
 package com.heweather.api.dto.response;
 
 import com.heweather.api.dto.response.weatherInfo.Refer;
-
+/**
+ * 分钟级降水实体类
+ */
 public class Minutely {
     //当前API的最近更新时间
     private String updateTime;

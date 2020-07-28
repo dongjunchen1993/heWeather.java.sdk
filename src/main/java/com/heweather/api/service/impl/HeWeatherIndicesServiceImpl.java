@@ -16,8 +16,14 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 天气灾害预警请求处理
+ * add by djc
+ */
 public class HeWeatherIndicesServiceImpl implements HeWeatherIndicesService {
+
     public HeWeatherResponse getWeatherIndices(String location, String key, String type, String lang, ApiEnum apiEnum) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://api.heweather.net/v7/indices/";
         if (apiEnum != null && !apiEnum.getName().equals("")) {
@@ -50,7 +56,7 @@ public class HeWeatherIndicesServiceImpl implements HeWeatherIndicesService {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
-        try{
+        try {
             HttpClient httpClient = new DefaultHttpClient();
             HttpGet httpGet = new HttpGet(url);
             HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -63,7 +69,7 @@ public class HeWeatherIndicesServiceImpl implements HeWeatherIndicesService {
                 JSONArray dailys = response.getJSONArray("daily");
                 List<JSONObject> list = JSONObject.parseArray(dailys.toJSONString(), JSONObject.class);
                 List<Daily> dailyList = new ArrayList<Daily>();
-                for(JSONObject jsonObject : list){
+                for (JSONObject jsonObject : list) {
                     Daily daily = new Daily();
                     daily.setCategory(jsonObject.getString("category"));
                     daily.setDate(jsonObject.getString("date"));
@@ -86,7 +92,7 @@ public class HeWeatherIndicesServiceImpl implements HeWeatherIndicesService {
                 weatherIndices.setRefer(refer);
                 heWeatherResponse.setWeatherIndices(weatherIndices);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             heWeatherResponse.setStatus("400");
         }
@@ -94,6 +100,7 @@ public class HeWeatherIndicesServiceImpl implements HeWeatherIndicesService {
     }
 
     public HeWeatherResponse getWeatherIndices(String location, String key, String type, ApiEnum apiEnum) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://api.heweather.net/v7/indices/";
         if (apiEnum != null && !apiEnum.getName().equals("")) {
@@ -120,7 +127,7 @@ public class HeWeatherIndicesServiceImpl implements HeWeatherIndicesService {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
-        try{
+        try {
             HttpClient httpClient = new DefaultHttpClient();
             HttpGet httpGet = new HttpGet(url);
             HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -133,7 +140,7 @@ public class HeWeatherIndicesServiceImpl implements HeWeatherIndicesService {
                 JSONArray dailys = response.getJSONArray("daily");
                 List<JSONObject> list = JSONObject.parseArray(dailys.toJSONString(), JSONObject.class);
                 List<Daily> dailyList = new ArrayList<Daily>();
-                for(JSONObject jsonObject : list){
+                for (JSONObject jsonObject : list) {
                     Daily daily = new Daily();
                     daily.setCategory(jsonObject.getString("category"));
                     daily.setDate(jsonObject.getString("date"));
@@ -156,7 +163,7 @@ public class HeWeatherIndicesServiceImpl implements HeWeatherIndicesService {
                 weatherIndices.setRefer(refer);
                 heWeatherResponse.setWeatherIndices(weatherIndices);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             heWeatherResponse.setStatus("400");
         }

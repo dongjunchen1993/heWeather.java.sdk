@@ -1,8 +1,11 @@
 package com.heweather.api.service;
 
-import com.heweather.api.dto.request.HeWeatherRequest;
 import com.heweather.api.dto.response.HeWeatherResponse;
 
+/**
+ * 城市信息搜索
+ * add by djc
+ */
 public interface HeWeatherLocationService {
 
     //城市信息搜索（location = 城市名称，key = 用户认证ID;）

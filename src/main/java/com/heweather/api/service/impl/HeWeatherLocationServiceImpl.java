@@ -2,7 +2,6 @@ package com.heweather.api.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.heweather.api.dto.request.HeWeatherRequest;
 import com.heweather.api.dto.response.HeWeatherResponse;
 import com.heweather.api.dto.response.LocationInfo;
 import com.heweather.api.dto.response.PoiInfo;
@@ -15,9 +14,15 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 城市信息搜索请求处理
+ * add by djc
+ */
+
 public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
 
     public HeWeatherResponse getLocation(String location, String key) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://geoapi.heweather.net/v2/city/lookup?";
         if (location != null && !location.equals("")) {
@@ -71,6 +76,7 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
     }
 
     public HeWeatherResponse getLocation(String location, String key, String adm, String range, Integer number, String lang) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://geoapi.heweather.net/v2/city/lookup?";
         if (location != null && !location.equals("")) {
@@ -149,6 +155,7 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
     }
 
     public HeWeatherResponse getLocation(String location, String key, String adm, String range) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://geoapi.heweather.net/v2/city/lookup?";
         if (location != null && !location.equals("")) {
@@ -215,6 +222,7 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
 
 
     public HeWeatherResponse getTopLocation(String key) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://geoapi.heweather.net/v2/city/top?";
         if (key != null && !key.equals("")) {
@@ -263,6 +271,7 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
     }
 
     public HeWeatherResponse getTopLocation(String key, String range, Integer number, String lang) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://geoapi.heweather.net/v2/city/top?";
         if (key != null && !key.equals("")) {
@@ -329,6 +338,7 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
     }
 
     public HeWeatherResponse getTopLocation(String key, String adm, String range, String lang) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://geoapi.heweather.net/v2/city/top?";
         if (key != null && !key.equals("")) {
@@ -397,6 +407,7 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
     }
 
     public HeWeatherResponse getLookupPoiLocation(String location, String key, String type) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://geoapi.heweather.net/v2/poi/lookup?";
         if (location != null && !location.equals("")) {
@@ -456,6 +467,7 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
     }
 
     public HeWeatherResponse getLookupPoiLocation(String location, String key, String type, String city, Integer number, String lang) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://geoapi.heweather.net/v2/poi/lookup?";
         if (location != null && !location.equals("")) {
@@ -532,6 +544,7 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
     }
 
     public HeWeatherResponse getRangePoiLocation(String location, String key, String type) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://geoapi.heweather.net/v2/poi/range?";
         if (location != null && !location.equals("")) {
@@ -587,10 +600,11 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
             heWeatherResponse.setStatus("400");
         }
         return heWeatherResponse;
-        
+
     }
 
     public HeWeatherResponse getRangePoiLocation(String location, String key, String type, Integer radius, Integer number, String lang) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://geoapi.heweather.net/v2/poi/range?";
         if (location != null && !location.equals("")) {

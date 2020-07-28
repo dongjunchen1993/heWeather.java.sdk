@@ -19,7 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HeWeatherWarningSreviceImpl implements HeWeatherWarningSrevice {
+
     public HeWeatherResponse getWeatherWarning(String location, String key, String lang) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://api.heweather.net/v7/warning/now?";
         if (location != null && !location.equals("")) {
@@ -40,7 +42,7 @@ public class HeWeatherWarningSreviceImpl implements HeWeatherWarningSrevice {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
-        try{
+        try {
             HttpClient httpClient = new DefaultHttpClient();
             HttpGet httpGet = new HttpGet(url);
             HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -54,7 +56,7 @@ public class HeWeatherWarningSreviceImpl implements HeWeatherWarningSrevice {
                 JSONArray warnings = response.getJSONArray("warning");
                 List<Warning> warningList = new ArrayList<Warning>();
                 List<JSONObject> list = JSONObject.parseArray(warnings.toJSONString(), JSONObject.class);
-                for(JSONObject jsonObject : list){
+                for (JSONObject jsonObject : list) {
                     Warning warning = new Warning();
                     warning.setEndTime(jsonObject.getString("endTime"));
                     warning.setId(jsonObject.getString("id"));
@@ -82,14 +84,15 @@ public class HeWeatherWarningSreviceImpl implements HeWeatherWarningSrevice {
                 disasterWarning.setRefer(refer);
                 heWeatherResponse.setDisasterWarning(disasterWarning);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             heWeatherResponse.setStatus("400");
         }
-        return  heWeatherResponse;
+        return heWeatherResponse;
     }
 
     public HeWeatherResponse getWeatherWarning(String location, String key) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://api.heweather.net/v7/warning/now?";
         if (location != null && !location.equals("")) {
@@ -104,7 +107,7 @@ public class HeWeatherWarningSreviceImpl implements HeWeatherWarningSrevice {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
-        try{
+        try {
             HttpClient httpClient = new DefaultHttpClient();
             HttpGet httpGet = new HttpGet(url);
             HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -118,7 +121,7 @@ public class HeWeatherWarningSreviceImpl implements HeWeatherWarningSrevice {
                 JSONArray warnings = response.getJSONArray("warning");
                 List<Warning> warningList = new ArrayList<Warning>();
                 List<JSONObject> list = JSONObject.parseArray(warnings.toJSONString(), JSONObject.class);
-                for(JSONObject jsonObject : list){
+                for (JSONObject jsonObject : list) {
                     Warning warning = new Warning();
                     warning.setEndTime(jsonObject.getString("endTime"));
                     warning.setId(jsonObject.getString("id"));
@@ -146,14 +149,15 @@ public class HeWeatherWarningSreviceImpl implements HeWeatherWarningSrevice {
                 disasterWarning.setRefer(refer);
                 heWeatherResponse.setDisasterWarning(disasterWarning);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             heWeatherResponse.setStatus("400");
         }
-        return  heWeatherResponse;
+        return heWeatherResponse;
     }
 
     public HeWeatherResponse getWarningLocList(String range, String key) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://api.heweather.net/v7/warning/list?";
         if (range != null && !range.equals("")) {
@@ -168,7 +172,7 @@ public class HeWeatherWarningSreviceImpl implements HeWeatherWarningSrevice {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
-        try{
+        try {
             HttpClient httpClient = new DefaultHttpClient();
             HttpGet httpGet = new HttpGet(url);
             HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -199,7 +203,7 @@ public class HeWeatherWarningSreviceImpl implements HeWeatherWarningSrevice {
                 disasterWarningCityList.setWarningLocList(warningLocList);
                 heWeatherResponse.setDisasterWarningCityList(disasterWarningCityList);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             heWeatherResponse.setStatus("400");
         }

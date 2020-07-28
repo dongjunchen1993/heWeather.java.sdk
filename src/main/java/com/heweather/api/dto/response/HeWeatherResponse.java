@@ -2,7 +2,11 @@ package com.heweather.api.dto.response;
 
 import java.util.List;
 
+/**
+ * 返回实体类
+ */
 public class HeWeatherResponse {
+
     private String status;
     //当前API的最近更新时间
     private String updateTime;

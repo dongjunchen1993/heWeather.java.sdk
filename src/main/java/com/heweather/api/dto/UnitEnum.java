@@ -2,16 +2,16 @@ package com.heweather.api.dto;
 
 /**
  * @author Djc
- * 天气标识
+ * 单位标识
  */
 public enum UnitEnum {
 
     /**
-     * 实况天气
+     * 公制单位
      */
     UNIT_CODE_M("m", "公制单位"),
     /**
-     * 实况天气
+     * 英制单位
      */
     UNIT_CODE_I("i", "英制单位");
 

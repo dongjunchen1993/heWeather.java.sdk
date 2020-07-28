@@ -18,8 +18,14 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 中国景点天气预报请求处理
+ * add by djc
+ */
 public class HeWeatherPoiServiceImpl implements HeWeatherPoiService {
+
     public HeWeatherResponse getWeatherPoi(ApiEnum apiEnum, UnitEnum enum_unit_code, String location, String key, String lang) {
+
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://api.heweather.net/v7/weather-poi/";
         if (apiEnum != null && !apiEnum.getName().equals("")) {
@@ -46,7 +52,7 @@ public class HeWeatherPoiServiceImpl implements HeWeatherPoiService {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
-        try{
+        try {
             HttpClient httpClient = new DefaultHttpClient();
             HttpGet httpGet = new HttpGet(url);
             HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -57,7 +63,7 @@ public class HeWeatherPoiServiceImpl implements HeWeatherPoiService {
                 heWeatherResponse.setUpdateTime(response.getString("updateTime"));
                 heWeatherResponse.setFxLink(response.getString("fxLink"));
                 WeatherPoiInfo weatherPoiInfo = new WeatherPoiInfo();
-                if(response.containsKey("now")){
+                if (response.containsKey("now")) {
                     JSONObject jsonObject = response.getJSONObject("now");
                     Now now = new Now();
                     now.setFeelsLike(jsonObject.getString("feelsLike"));
@@ -81,11 +87,11 @@ public class HeWeatherPoiServiceImpl implements HeWeatherPoiService {
                     refer.setSources(licenseList);
                     weatherPoiInfo.setRefer(refer);
                     heWeatherResponse.setWeatherPoiInfo(weatherPoiInfo);
-                }else if(response.containsKey("daily")){
+                } else if (response.containsKey("daily")) {
                     JSONArray jsonArray = response.getJSONArray("daily");
                     List<Daily> dailyList = new ArrayList<Daily>();
                     List<JSONObject> list = JSONObject.parseArray(jsonArray.toJSONString(), JSONObject.class);
-                    for(JSONObject jsonObject : list){
+                    for (JSONObject jsonObject : list) {
                         Daily daily = new Daily();
                         daily.setFxDate(jsonObject.getString("fxDate"));
                         daily.setIconDay(jsonObject.getString("iconDay"));
@@ -114,15 +120,16 @@ public class HeWeatherPoiServiceImpl implements HeWeatherPoiService {
                 }
 
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             heWeatherResponse.setStatus("400");
 
         }
-        return  heWeatherResponse;
+        return heWeatherResponse;
     }
 
     public HeWeatherResponse getWeatherPoi(ApiEnum apiEnum, String location, String key) {
+        
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://api.heweather.net/v7/weather-poi/";
         if (apiEnum != null && !apiEnum.getName().equals("")) {
@@ -143,7 +150,7 @@ public class HeWeatherPoiServiceImpl implements HeWeatherPoiService {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
-        try{
+        try {
             HttpClient httpClient = new DefaultHttpClient();
             HttpGet httpGet = new HttpGet(url);
             HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -154,7 +161,7 @@ public class HeWeatherPoiServiceImpl implements HeWeatherPoiService {
                 heWeatherResponse.setUpdateTime(response.getString("updateTime"));
                 heWeatherResponse.setFxLink(response.getString("fxLink"));
                 WeatherPoiInfo weatherPoiInfo = new WeatherPoiInfo();
-                if(response.containsKey("now")){
+                if (response.containsKey("now")) {
                     JSONObject jsonObject = response.getJSONObject("now");
                     Now now = new Now();
                     now.setFeelsLike(jsonObject.getString("feelsLike"));
@@ -178,11 +185,11 @@ public class HeWeatherPoiServiceImpl implements HeWeatherPoiService {
                     refer.setSources(licenseList);
                     weatherPoiInfo.setRefer(refer);
                     heWeatherResponse.setWeatherPoiInfo(weatherPoiInfo);
-                }else if(response.containsKey("daily")){
+                } else if (response.containsKey("daily")) {
                     JSONArray jsonArray = response.getJSONArray("daily");
                     List<Daily> dailyList = new ArrayList<Daily>();
                     List<JSONObject> list = JSONObject.parseArray(jsonArray.toJSONString(), JSONObject.class);
-                    for(JSONObject jsonObject : list){
+                    for (JSONObject jsonObject : list) {
                         Daily daily = new Daily();
                         daily.setFxDate(jsonObject.getString("fxDate"));
                         daily.setIconDay(jsonObject.getString("iconDay"));
@@ -211,10 +218,10 @@ public class HeWeatherPoiServiceImpl implements HeWeatherPoiService {
                 }
 
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             heWeatherResponse.setStatus("400");
         }
-        return  heWeatherResponse;
+        return heWeatherResponse;
     }
 }

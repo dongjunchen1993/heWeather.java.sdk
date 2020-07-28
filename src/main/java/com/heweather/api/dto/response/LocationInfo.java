@@ -1,8 +1,13 @@
 package com.heweather.api.dto.response;
 
+/**
+ * 城市信息搜索
+ * <p>
+ * add by djc
+ */
 public class LocationInfo {
     private String name;
-    private String id ;
+    private String id;
     private String lat;
     private String lon;
     private String adm2;
