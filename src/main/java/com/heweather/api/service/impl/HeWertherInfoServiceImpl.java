@@ -10,12 +10,14 @@ import com.heweather.api.dto.response.weatherinfo.Hourly;
 import com.heweather.api.dto.response.weatherinfo.Now;
 import com.heweather.api.dto.response.weatherinfo.Refer;
 import com.heweather.api.service.HeWertherInfoService;
+import com.heweather.utils.SignUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -24,31 +26,40 @@ import java.util.List;
  */
 public class HeWertherInfoServiceImpl implements HeWertherInfoService {
 
-    public HeWeatherResponse getWeatherInfo(String location, String key, ApiEnum apiEnum) {
+    public HeWeatherResponse getWeatherInfo(String location, String key, ApiEnum apiEnum, String sign) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://api.heweather.net/v7/weather/";
-        if (apiEnum != null && !apiEnum.getName().equals("")) {
-            url = url + apiEnum.getValue();
+        String URL = "https://api.heweather.net/v7/weather/";
+        if (apiEnum != null) {
+            URL = URL + apiEnum.getValue();
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
+        HashMap<String, String> params = new HashMap<>();
         if (location != null && !location.equals("")) {
-            url = url + "&location" + location;
+            URL = URL + "location" + location;
+            params.put("location", location);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&username" + key;
+            params.put("username", key);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
+        String t = String.valueOf(System.currentTimeMillis() / 1000);
+        URL = URL + "&t" + t;
+        params.put("t", t);
+        String secret = sign;
         try {
+            String signature = SignUtils.getSignature(params, secret);
+            URL = URL + "&sign" + signature;
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             String json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);
@@ -156,36 +167,46 @@ public class HeWertherInfoServiceImpl implements HeWertherInfoService {
         return heWeatherResponse;
     }
 
-    public HeWeatherResponse getWeatherInfo(String location, String key, String lang, String unit, ApiEnum apiEnum) {
+    public HeWeatherResponse getWeatherInfo(String location, String key, String lang, ApiEnum apiEnum, String sign) {
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        String url = "https://api.heweather.net/v7/weather/";
-        if (apiEnum != null && !apiEnum.getName().equals("")) {
-            url = url + apiEnum.getValue();
+        String URL = "https://api.heweather.net/v7/weather/";
+        if (apiEnum != null) {
+            URL = URL + apiEnum.getValue();
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
+        HashMap<String, String> params = new HashMap<>();
         if (location != null && !location.equals("")) {
-            url = url + "&location" + location;
+            URL = URL + "location" + location;
+            params.put("location", location);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            url = url + "&key" + key;
+            URL = URL + "&username" + key;
+            params.put("username", key);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
-        if (unit != null && !unit.equals("")) {
-            url = url + "&unit" + unit;
+        if (lang != null && !lang.equals("")) {
+            URL = URL + "&lang" + lang;
+            params.put("lang", lang);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
+        String t = String.valueOf(System.currentTimeMillis() / 1000);
+        URL = URL + "&t" + t;
+        params.put("t", t);
+        String secret = sign;
         try {
+            String signature = SignUtils.getSignature(params, secret);
+            URL = URL + "&sign" + signature;
             HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(url);
+            HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
             String json = httpResponse.getEntity().toString();
             JSONObject response = (JSONObject) JSONObject.parse(json);

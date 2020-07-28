@@ -4,10 +4,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.heweather.api.dto.response.HeWeatherResponse;
 import com.heweather.api.dto.response.Minutely;
 import com.heweather.api.service.HeWeatherMunutelyService;
+import com.heweather.utils.SignUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.util.HashMap;
 
 /**
  * 分钟级降水
@@ -16,23 +19,32 @@ import org.apache.http.impl.client.DefaultHttpClient;
 public class HeWeatherMunutelyServiceImpl implements HeWeatherMunutelyService {
 
     @Override
-    public HeWeatherResponse getMinutely(String location, String key) {
+    public HeWeatherResponse getMinutely(String location, String key, String sign) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://api.heweather.net/v7/minutely/5m?";
+        HashMap<String, String> params = new HashMap<>();
         if (location != null && !location.equals("")) {
             URL = URL + "location" + location;
+            params.put("location", location);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            URL = URL + "&key" + key;
+            URL = URL + "&username" + key;
+            params.put("username", key);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
+        String t = String.valueOf(System.currentTimeMillis() / 1000);
+        URL = URL + "&t" + t;
+        params.put("t", t);
+        String secret = sign;
         try {
+            String signature = SignUtils.getSignature(params, secret);
+            URL = URL + "&sign" + signature;
             HttpClient httpClient = new DefaultHttpClient();
             HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -58,29 +70,39 @@ public class HeWeatherMunutelyServiceImpl implements HeWeatherMunutelyService {
     }
 
     @Override
-    public HeWeatherResponse getMinutely(String location, String key, String lang) {
+    public HeWeatherResponse getMinutely(String location, String key, String lang, String sign) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://api.heweather.net/v7/minutely/5m?";
+        HashMap<String, String> params = new HashMap<>();
         if (location != null && !location.equals("")) {
             URL = URL + "location" + location;
+            params.put("location", location);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            URL = URL + "&key" + key;
+            URL = URL + "&username" + key;
+            params.put("username", key);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (lang != null && !lang.equals("")) {
             URL = URL + "&lang" + lang;
+            params.put("lang", lang);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
+        String t = String.valueOf(System.currentTimeMillis() / 1000);
+        URL = URL + "&t" + t;
+        params.put("t", t);
+        String secret = sign;
         try {
+            String signature = SignUtils.getSignature(params, secret);
+            URL = URL + "&sign" + signature;
             HttpClient httpClient = new DefaultHttpClient();
             HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);

@@ -10,7 +10,7 @@ import com.heweather.api.dto.response.HeWeatherResponse;
  */
 public interface HeWeatherHistoricalService {
 
-    HeWeatherResponse getWeatherPoi(TypeEnum enum_type_code, String location, String key, String date);
+    HeWeatherResponse getWeatherPoi(TypeEnum enum_type_code, String location, String key, String date, String sign);
 
-    HeWeatherResponse getWeatherPoi(TypeEnum enum_type_code, String location, String key, String date, String lang, UnitEnum enum_unit_code);
+    HeWeatherResponse getWeatherPoi(TypeEnum enum_type_code, String location, String key, String date, String lang, UnitEnum enum_unit_code, String sign);
 }

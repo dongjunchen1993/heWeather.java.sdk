@@ -8,12 +8,14 @@ import com.heweather.api.dto.response.WeatherIndices;
 import com.heweather.api.dto.response.indices.Daily;
 import com.heweather.api.dto.response.weatherinfo.Refer;
 import com.heweather.api.service.HeWeatherIndicesService;
+import com.heweather.utils.SignUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -24,10 +26,11 @@ public class HeWeatherIndicesServiceImpl implements HeWeatherIndicesService {
 
     String URL = "https://api.heweather.net/v7/indices/";
     @Override
-    public HeWeatherResponse getWeatherIndices(String location, String key, String type, String lang, ApiEnum apiEnum) {
+    public HeWeatherResponse getWeatherIndices(String location, String key, String type, String lang, ApiEnum apiEnum,String sign) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-        if (apiEnum != null && !apiEnum.getName().equals("")) {
+        HashMap<String, String> params = new HashMap<>();
+        if (apiEnum != null) {
             URL = URL + apiEnum.getValue();
         } else {
             heWeatherResponse.setStatus("400");
@@ -35,29 +38,39 @@ public class HeWeatherIndicesServiceImpl implements HeWeatherIndicesService {
         }
         if (location != null && !location.equals("")) {
             URL = URL + "location" + location;
+            params.put("location", location);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            URL = URL + "&key" + key;
+            URL = URL + "&username" + key;
+            params.put("username", key);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (type != null && !type.equals("")) {
             URL = URL + "&type" + type;
+            params.put("type", type);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (lang != null && !lang.equals("")) {
             URL = URL + "&lang" + lang;
+            params.put("lang", lang);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
+        String t = String.valueOf(System.currentTimeMillis() / 1000);
+        URL = URL + "&t" + t;
+        params.put("t", t);
+        String secret = sign;
         try {
+            String signature = SignUtils.getSignature(params, secret);
+            URL = URL + "&sign" + signature;
             HttpClient httpClient = new DefaultHttpClient();
             HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -100,10 +113,10 @@ public class HeWeatherIndicesServiceImpl implements HeWeatherIndicesService {
         return heWeatherResponse;
     }
     @Override
-    public HeWeatherResponse getWeatherIndices(String location, String key, String type, ApiEnum apiEnum) {
+    public HeWeatherResponse getWeatherIndices(String location, String key, String type, ApiEnum apiEnum,String sign) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
-
+        HashMap<String, String> params = new HashMap<>();
         if (apiEnum != null && !apiEnum.getName().equals("")) {
             URL = URL + apiEnum.getValue();
         } else {
@@ -112,23 +125,32 @@ public class HeWeatherIndicesServiceImpl implements HeWeatherIndicesService {
         }
         if (location != null && !location.equals("")) {
             URL = URL + "location" + location;
+            params.put("location", location);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            URL = URL + "&key" + key;
+            URL = URL + "&username" + key;
+            params.put("username", key);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
         if (type != null && !type.equals("")) {
             URL = URL + "&type" + type;
+            params.put("type", type);
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
+        String t = String.valueOf(System.currentTimeMillis() / 1000);
+        URL = URL + "&t" + t;
+        params.put("t", t);
+        String secret = sign;
         try {
+            String signature = SignUtils.getSignature(params, secret);
+            URL = URL + "&sign" + signature;
             HttpClient httpClient = new DefaultHttpClient();
             HttpGet httpGet = new HttpGet(URL);
             HttpResponse httpResponse = httpClient.execute(httpGet);

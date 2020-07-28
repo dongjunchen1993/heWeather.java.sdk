@@ -52,18 +52,17 @@ public class SignUtils {
     }
 
     public static void main(String[] args) {
-        String key = "HE2006141618541902";
+        String key = "";
         HashMap<String, String> params = new HashMap<>();
         params.put("location","101010100");
-        params.put("t",String.valueOf(new Date().getTime()));
-        params.put("publicid","HE2006141618541902");
+        params.put("t",String.valueOf(System.currentTimeMillis()/1000));
+        params.put("date","20200725");
+        params.put("username","");
         try{
             String signature = SignUtils.getSignature(params, key);
             System.out.println(signature);
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
     }
 }
