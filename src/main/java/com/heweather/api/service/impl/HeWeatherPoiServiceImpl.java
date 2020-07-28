@@ -23,6 +23,7 @@ import java.util.List;
 /**
  * 中国景点天气预报请求处理
  * add by djc
+ * @author djc
  */
 public class HeWeatherPoiServiceImpl implements HeWeatherPoiService {
 
