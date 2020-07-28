@@ -2,7 +2,7 @@ package com.heweather.api.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.heweather.api.dto.ENUM_WHEATHER_TIME;
+import com.heweather.api.dto.ApiEnum;
 import com.heweather.api.dto.response.HeWeatherResponse;
 import com.heweather.api.dto.response.WeatherIndices;
 import com.heweather.api.dto.response.indices.Daily;
@@ -17,11 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HeWeatherIndicesServiceImpl implements HeWeatherIndicesService {
-    public HeWeatherResponse getWeatherIndices(String location, String key, String type, String lang, ENUM_WHEATHER_TIME enum_wheather_time) {
+    public HeWeatherResponse getWeatherIndices(String location, String key, String type, String lang, ApiEnum apiEnum) {
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://api.heweather.net/v7/indices/";
-        if (enum_wheather_time != null && !enum_wheather_time.getName().equals("")) {
-            url = url + enum_wheather_time.getValue();
+        if (apiEnum != null && !apiEnum.getName().equals("")) {
+            url = url + apiEnum.getValue();
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
@@ -93,11 +93,11 @@ public class HeWeatherIndicesServiceImpl implements HeWeatherIndicesService {
         return heWeatherResponse;
     }
 
-    public HeWeatherResponse getWeatherIndices(String location, String key, String type,ENUM_WHEATHER_TIME enum_wheather_time) {
+    public HeWeatherResponse getWeatherIndices(String location, String key, String type, ApiEnum apiEnum) {
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://api.heweather.net/v7/indices/";
-        if (enum_wheather_time != null && !enum_wheather_time.getName().equals("")) {
-            url = url + enum_wheather_time.getValue();
+        if (apiEnum != null && !apiEnum.getName().equals("")) {
+            url = url + apiEnum.getValue();
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;

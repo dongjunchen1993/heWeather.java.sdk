@@ -7,7 +7,11 @@ import com.heweather.api.dto.response.weatherInfo.Refer;
 
 import java.util.List;
 
-public class AirQualit {
+/**
+ * @author djc
+ */
+public class AirQuality {
+
     private Now now;
 
     private List<Station> station;

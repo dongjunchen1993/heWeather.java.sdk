@@ -1,7 +1,6 @@
 package com.heweather.api.service.impl;
 
-import com.heweather.api.dto.ENUM_WHEATHER_TIME;
-import com.heweather.api.dto.request.HeWeatherRequest;
+import com.heweather.api.dto.ApiEnum;
 import com.heweather.api.dto.response.HeWeatherResponse;
 import com.heweather.api.service.HeWertherInfoService;
 
@@ -37,11 +36,11 @@ public class HeWeatherServiceImpl implements HeWertherInfoService {
         return null;
     }
 
-    public HeWeatherResponse getWeatherInfo(String location, String key, ENUM_WHEATHER_TIME enum_wheather_time) {
+    public HeWeatherResponse getWeatherInfo(String location, String key, ApiEnum apiEnum) {
         return null;
     }
 
-    public HeWeatherResponse getWeatherInfo(String location, String key, String lang, String unit, ENUM_WHEATHER_TIME enum_wheather_time) {
+    public HeWeatherResponse getWeatherInfo(String location, String key, String lang, String unit, ApiEnum apiEnum) {
         return null;
     }
 }

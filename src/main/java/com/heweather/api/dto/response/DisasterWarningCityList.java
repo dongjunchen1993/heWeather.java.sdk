@@ -6,6 +6,7 @@ import com.heweather.api.dto.response.weatherInfo.Refer;
 import java.util.List;
 
 public class DisasterWarningCityList {
+
     private List<WarningLoc> warningLocList;
     private Refer refer;
 

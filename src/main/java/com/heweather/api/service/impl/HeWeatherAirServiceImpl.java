@@ -2,8 +2,8 @@ package com.heweather.api.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.heweather.api.dto.ENUM_WHEATHER_TIME;
-import com.heweather.api.dto.response.AirQualit;
+import com.heweather.api.dto.ApiEnum;
+import com.heweather.api.dto.response.AirQuality;
 import com.heweather.api.dto.response.HeWeatherResponse;
 import com.heweather.api.dto.response.airQualit.Daily;
 import com.heweather.api.dto.response.airQualit.Now;
@@ -19,11 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HeWeatherAirServiceImpl implements HeWeatherAirService {
-    public HeWeatherResponse getWeatherAir(String location, String key, String lang, ENUM_WHEATHER_TIME enum_wheather_time) {
+    public HeWeatherResponse getWeatherAir(String location, String key, String lang, ApiEnum apiEnum) {
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://api.heweather.net/v7/air/";
-        if (enum_wheather_time != null && !enum_wheather_time.getName().equals("")) {
-            url = url + enum_wheather_time.getValue();
+        if (apiEnum != null && !apiEnum.getName().equals("")) {
+            url = url + apiEnum.getValue();
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
@@ -56,7 +56,7 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
                 heWeatherResponse.setStatus("200");
                 heWeatherResponse.setUpdateTime(response.getString("updateTime"));
                 heWeatherResponse.setFxLink(response.getString("fxLink"));
-                AirQualit airQualit = new AirQualit();
+                AirQuality airQuality = new AirQuality();
                 if (response.containsKey("now")) {
                     JSONObject nowobj = response.getJSONObject("now");
                     Now now = new Now();
@@ -98,10 +98,10 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
                     List<String> licenseList = JSONObject.parseArray(license.toJSONString(), String.class);
                     refer.setLicense(sourcesList);
                     refer.setSources(licenseList);
-                    airQualit.setNow(now);
-                    airQualit.setStation(stationList);
-                    airQualit.setRefer(refer);
-                    heWeatherResponse.setAirQualit(airQualit);
+                    airQuality.setNow(now);
+                    airQuality.setStation(stationList);
+                    airQuality.setRefer(refer);
+                    heWeatherResponse.setAirQuality(airQuality);
                 }else if (response.containsKey("daily")){
                     List<Daily> dailyList = new ArrayList<Daily>();
                     JSONArray dailies= response.getJSONArray("station");
@@ -122,8 +122,8 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
                     List<String> licenseList = JSONObject.parseArray(license.toJSONString(), String.class);
                     refer.setLicense(sourcesList);
                     refer.setSources(licenseList);
-                    airQualit.setDaily(dailyList);
-                    airQualit.setRefer(refer);
+                    airQuality.setDaily(dailyList);
+                    airQuality.setRefer(refer);
                 }
             }
         }catch (Exception e){
@@ -133,11 +133,11 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
         return heWeatherResponse;
     }
 
-    public HeWeatherResponse getWeatherAir(String location, String key, ENUM_WHEATHER_TIME enum_wheather_time) {
+    public HeWeatherResponse getWeatherAir(String location, String key, ApiEnum apiEnum) {
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://api.heweather.net/v7/air/";
-        if (enum_wheather_time != null && !enum_wheather_time.getName().equals("")) {
-            url = url + enum_wheather_time.getValue();
+        if (apiEnum != null && !apiEnum.getName().equals("")) {
+            url = url + apiEnum.getValue();
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
@@ -164,7 +164,7 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
                 heWeatherResponse.setStatus("200");
                 heWeatherResponse.setUpdateTime(response.getString("updateTime"));
                 heWeatherResponse.setFxLink(response.getString("fxLink"));
-                AirQualit airQualit = new AirQualit();
+                AirQuality airQuality = new AirQuality();
                 if (response.containsKey("now")) {
                     JSONObject nowobj = response.getJSONObject("now");
                     Now now = new Now();
@@ -206,10 +206,10 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
                     List<String> licenseList = JSONObject.parseArray(license.toJSONString(), String.class);
                     refer.setLicense(sourcesList);
                     refer.setSources(licenseList);
-                    airQualit.setNow(now);
-                    airQualit.setStation(stationList);
-                    airQualit.setRefer(refer);
-                    heWeatherResponse.setAirQualit(airQualit);
+                    airQuality.setNow(now);
+                    airQuality.setStation(stationList);
+                    airQuality.setRefer(refer);
+                    heWeatherResponse.setAirQuality(airQuality);
                 }else if (response.containsKey("daily")){
                     List<Daily> dailyList = new ArrayList<Daily>();
                     JSONArray dailies= response.getJSONArray("station");
@@ -230,8 +230,8 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
                     List<String> licenseList = JSONObject.parseArray(license.toJSONString(), String.class);
                     refer.setLicense(sourcesList);
                     refer.setSources(licenseList);
-                    airQualit.setDaily(dailyList);
-                    airQualit.setRefer(refer);
+                    airQuality.setDaily(dailyList);
+                    airQuality.setRefer(refer);
                 }
             }
         }catch (Exception e){

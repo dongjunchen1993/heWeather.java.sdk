@@ -19,7 +19,7 @@ public class HeWeatherResponse {
     //
     private Minutely minutely;
     //
-    private AirQualit airQualit;
+    private AirQuality airQuality;
     //
     private DisasterWarning disasterWarning;
     //
@@ -99,12 +99,12 @@ public class HeWeatherResponse {
         this.minutely = minutely;
     }
 
-    public AirQualit getAirQualit() {
-        return airQualit;
+    public AirQuality getAirQuality() {
+        return airQuality;
     }
 
-    public void setAirQualit(AirQualit airQualit) {
-        this.airQualit = airQualit;
+    public void setAirQuality(AirQuality airQuality) {
+        this.airQuality = airQuality;
     }
 
     public DisasterWarning getDisasterWarning() {

@@ -2,7 +2,7 @@ package com.heweather.api.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.heweather.api.dto.ENUM_WHEATHER_TIME;
+import com.heweather.api.dto.ApiEnum;
 import com.heweather.api.dto.response.HeWeatherResponse;
 import com.heweather.api.dto.response.WeatherInfo;
 import com.heweather.api.dto.response.weatherInfo.Daily;
@@ -20,11 +20,11 @@ import java.util.List;
 
 public class HeWertherInfoServiceImpl implements HeWertherInfoService {
 
-    public HeWeatherResponse getWeatherInfo(String location, String key, ENUM_WHEATHER_TIME enum_wheather_time) {
+    public HeWeatherResponse getWeatherInfo(String location, String key, ApiEnum apiEnum) {
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://api.heweather.net/v7/weather/";
-        if (enum_wheather_time != null && !enum_wheather_time.getName().equals("")) {
-            url = url + enum_wheather_time.getValue();
+        if (apiEnum != null && !apiEnum.getName().equals("")) {
+            url = url + apiEnum.getValue();
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
@@ -151,11 +151,11 @@ public class HeWertherInfoServiceImpl implements HeWertherInfoService {
         return heWeatherResponse;
     }
 
-    public HeWeatherResponse getWeatherInfo(String location, String key, String lang, String unit, ENUM_WHEATHER_TIME enum_wheather_time) {
+    public HeWeatherResponse getWeatherInfo(String location, String key, String lang, String unit, ApiEnum apiEnum) {
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String url = "https://api.heweather.net/v7/weather/";
-        if (enum_wheather_time != null && !enum_wheather_time.getName().equals("")) {
-            url = url + enum_wheather_time.getValue();
+        if (apiEnum != null && !apiEnum.getName().equals("")) {
+            url = url + apiEnum.getValue();
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
