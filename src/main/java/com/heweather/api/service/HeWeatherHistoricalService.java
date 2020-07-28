@@ -9,8 +9,9 @@ import com.heweather.api.dto.response.HeWeatherResponse;
  * add by djc
  */
 public interface HeWeatherHistoricalService {
-
+    //历史天气和空气质量
     HeWeatherResponse getWeatherPoi(TypeEnum enum_type_code, String location, String key, String date, String sign);
 
+    //历史天气和空气质量
     HeWeatherResponse getWeatherPoi(TypeEnum enum_type_code, String location, String key, String date, String lang, UnitEnum enum_unit_code, String sign);
 }

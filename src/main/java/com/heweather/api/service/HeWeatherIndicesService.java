@@ -4,7 +4,7 @@ import com.heweather.api.dto.ApiEnum;
 import com.heweather.api.dto.response.HeWeatherResponse;
 
 /**
- * 天气灾害预警
+ * 天气生活指数
  * add by djc
  */
 public interface HeWeatherIndicesService {

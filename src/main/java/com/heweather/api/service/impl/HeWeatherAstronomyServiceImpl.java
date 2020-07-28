@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class HeWeatherAstronomyServiceImpl implements HeWeatherAstronomyService {
     @Override
-    public HeWeatherResponse geitSunmoon(String location, String key, String date, String sign) {
+    public HeWeatherResponse getSunmoon(String location, String key, String date, String sign) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://api.heweather.net/v7/astronomy/sunmoon?";
@@ -94,7 +94,7 @@ public class HeWeatherAstronomyServiceImpl implements HeWeatherAstronomyService 
     }
 
     @Override
-    public HeWeatherResponse geitSunmoon(String location, String key, String date, String lang, String sign) {
+    public HeWeatherResponse getSunmoon(String location, String key, String date, String lang, String sign) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://api.heweather.net/v7/astronomy/sunmoon?";
