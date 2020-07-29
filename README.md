@@ -5,6 +5,34 @@
 #### 和风天气：
 
 ##### 此SDK分别提供了以下接口为大家使用：
+
+######需要先配置用户认证ID和key
+**简要描述：** 
+**请求方法：** 
+- getWeatherInfo()
+
+**参数说明：**
+
+|参数名|必选|类型|说明|
+|:----    |:---|:----- |-----   |
+|publicid |是  |String | 用户认证ID    |
+|privatekey |是  |String | 用户认证密钥    | 
+
+``` 
+  public class InitializeSign {
+  
+      private static String sign;
+      private static String key;
+  
+      private static  final void initializeSign(String publicid,String privatekey) {
+          sign = privatekey;
+          key =  publicid;
+      }
+  
+  }
+```
+
+
 ##### 天气预报和实况
 **简要描述：** 
 - 城市级天气预报API，包括全球15万个城市或地区的1-15天天气预报、实况天气、逐小时天气预报以及日出日落、月升月落等数据。
@@ -19,19 +47,17 @@
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
 |location |是  |String | 需要查询地区    |
-|key |是  |String | 用户认证密钥    | 
 |apiEnum |是  |Enum | 请求类型    |  
-|sign |是  |String | 用户密钥    |   
 |lang |否  |string | 多语言设置    | 
 
 ``` 
   public interface HeWertherInfoService {
   
       //天气预报和实况 实时
-      HeWeatherResponse getWeatherInfo(String location, String key, ApiEnum apiEnum, String sign);
+      HeWeatherResponse getWeatherInfo(String location, ApiEnum apiEnum);
   
       //天气预报和实况 实时
-      HeWeatherResponse getWeatherInfo(String location, String key, String lang, ApiEnum apiEnum, String sign);
+      HeWeatherResponse getWeatherInfo(String location,String lang, ApiEnum apiEnum);
   }
 ```
 #### 城市信息搜索
@@ -49,9 +75,7 @@
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
 |location |是  |String | 需要查询地区    |
-|key |是  |String | 用户认证密钥    | 
 |apiEnum |是  |Enum | 请求类型    |  
-|sign |是  |String | 用户密钥    |   
 |lang |否  |string | 多语言设置    | 
 |adm |否  |string | 城市所属行政区    | 
 |range |否  |string | 搜索范围    | 
@@ -67,8 +91,6 @@
 
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
-|key |是  |String | 用户认证密钥    | 
-|sign |是  |String | 用户密钥    |  
 |number |是  |String | 请求类型    |  
 |lang |是  |string | 多语言设置    | 
 |range |是  |string | 多语言设置    | 
@@ -84,8 +106,6 @@
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
 |location |是  |String | 需要查询地区    |
-|key |是  |String | 用户认证密钥    | 
-|sign |是  |String | 用户密钥    |  
 |number |是  |String | 请求类型    |  
 |lang |是  |string | 多语言设置    | 
 |type |是  |string | poi类型    | 
@@ -104,8 +124,6 @@
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
 |location |是  |String | 需要查询地区    |
-|key |是  |String | 用户认证密钥    | 
-|sign |是  |String | 用户密钥    |  
 |number |是  |String | 请求类型    |  
 |lang |是  |string | 多语言设置    | 
 |type |是  |string | poi类型    | 
@@ -116,17 +134,17 @@
 ``` 
   public interface HeWeatherLocationService {
   
-    //城市信息搜索(location = 城市名称，key = 用户认证ID; adm = 城市所属行政区;range = 搜索范围 ;number = 返回城市数量; lang = 语言 )
-    HeWeatherResponse getLocation(String location, String key, String adm, String range, Integer number, String lang, String sign);
+    //城市信息搜索(location = 城市名称， adm = 城市所属行政区;range = 搜索范围 ;number = 返回城市数量; lang = 语言 )
+    HeWeatherResponse getLocation(String location, String adm, String range, Integer number, String lang);
     
     //热门城市搜索（key = 用户认证ID; range = 搜索范围 ;number = 返回城市数量; lang = 语言）
-    HeWeatherResponse getTopLocation(String key, String range, Integer number, String lang, String sign);
+    HeWeatherResponse getTopLocation( String range, Integer number, String lang);
      
-    //poi信息搜索(location = 城市名称，key = 用户认证ID ；type = poi类型 ; radius = 搜索范围 ；city = 所在城市； number = 返回城市数量 ； lang = 语言; ）
-    HeWeatherResponse getLookupPoiLocation(String location, String key, String type, String city, Integer number, String lang, String sign);
+    //poi信息搜索(location = 城市名称， ；type = poi类型 ; radius = 搜索范围 ；city = 所在城市； number = 返回城市数量 ； lang = 语言; ）
+    HeWeatherResponse getLookupPoiLocation(String location, String type, String city, Integer number, String lang);
     
-    //poi范围搜索 (location = 城市名称，key = 用户认证ID ；type = poi类型 ; radius = 搜索范围 ； number = 返回城市数量 ； lang = 语言;）
-    HeWeatherResponse getRangePoiLocation(String location, String key, String type, Integer radius, Integer number, String lang, String sign);
+    //poi范围搜索 (location = 城市名称；type = poi类型 ; radius = 搜索范围 ； number = 返回城市数量 ； lang = 语言;）
+    HeWeatherResponse getRangePoiLocation(String location, String type, Integer radius, Integer number, String lang);
 
   }
 ```
@@ -145,8 +163,6 @@
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
 |location |是  |String | 需要查询地区    | 
-|key |是  |String | 用户认证密钥    | 
-|sign |是  |String | 用户密钥    |  
 |number |是  |String | 请求类型    |  
 |lang |是  |string | 多语言设置    | 
 
@@ -154,7 +170,7 @@
   public interface HeWeatherMunutelyService {
   
       //分钟级降水
-      HeWeatherResponse getMinutely(String location, String key, String lang, String sing);
+      HeWeatherResponse getMinutely(String location, String lang);
   
   }
 ```
@@ -174,16 +190,13 @@
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
 |location |是  |String | 需要查询地区    | 
-|key |是  |String | 用户认证密钥    | 
-|sign |是  |String | 用户密钥    |  
 |apiEnum |是  |ENUM | 请求类型    |  
-|number |是  |String | 返回城市数量    |  
 |lang |是  |string | 多语言设置    | 
 
 ``` 
  public interface HeWeatherAirService {
      //空气质量实况
-     HeWeatherResponse getWeatherAir(String location, String key, String lang, ApiEnum apiEnum, String sign);
+     HeWeatherResponse getWeatherAir(String location, String lang, ApiEnum apiEnum);
  }
 ```
 
@@ -199,8 +212,6 @@
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
 |location |是  |String | 需要查询地区    | 
-|key |是  |String | 用户认证密钥    | 
-|sign |是  |String | 用户密钥    |  
 |lang |是  |string | 多语言设置    | 
 
 ##### 灾害预警城市列表
@@ -214,16 +225,14 @@
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
 |range |是  |String | 选择指定的国，目前仅支持中国    | 
-|key |是  |String | 用户认证密钥    | 
-|sign |是  |String | 用户密钥    |  
 
 ``` 
  public interface HeWeatherWarningSrevice {
      //灾害预警
-     HeWeatherResponse getWeatherWarning(String location, String key, String lang, String sign);
- 
+     HeWeatherResponse getWeatherWarning(String location,String lang);
+  
      //灾害预警城市列表
-     HeWeatherResponse getWarningLocList(String range, String key, String sign);
+     HeWeatherResponse getWarningLocList(String range);
  }
 ```
 
@@ -241,8 +250,6 @@
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
 |location |是  |String | 需要查询地区    | 
-|key |是  |String | 用户认证密钥    | 
-|sign |是  |String | 用户密钥    |  
 |type |是  |String | 生活指数数据类型ID    |  
 |apiEnum |是  |ENUM | 请求类型    |  
 |lang |是  |string | 多语言设置    | 
@@ -251,7 +258,7 @@
  public interface HeWeatherIndicesService {
  
      //天气生活指数
-     HeWeatherResponse getWeatherIndices(String location, String key, String type, String lang, ApiEnum apiEnum, String sign);
+     HeWeatherResponse getWeatherIndices(String location, String type, String lang, ApiEnum apiEnum);
  
 }
 ```
@@ -270,8 +277,6 @@
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
 |location |是  |String | 需要查询地区    | 
-|key |是  |String | 用户认证密钥    | 
-|sign |是  |String | 用户密钥    |  
 |apiEnum |是  |ENUM | 请求类型    |  
 |enum_unit_code |是  |ENUM | 单位名称    |  
 |lang |是  |string | 多语言设置    | 
@@ -279,7 +284,7 @@
 ``` 
  public interface HeWeatherPoiService {
      //中国景点天气预报
-     HeWeatherResponse getWeatherPoi(ApiEnum apiEnum, UnitEnum enum_unit_code, String location, String key, String lang, String sign);
+     HeWeatherResponse getWeatherPoi(ApiEnum apiEnum, UnitEnum enum_unit_code, String location, String lang);
  
  }
 ```
@@ -299,8 +304,6 @@
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
 |location |是  |String | 需要查询地区    | 
-|key |是  |String | 用户认证密钥    | 
-|sign |是  |String | 用户密钥    |  
 |enum_unit_code |是  |ENUM | 请求类型    |  
 |enum_unit_code |是  |ENUM | 单位名称    |  
 |lang |是  |string | 多语言设置    | 
@@ -310,7 +313,7 @@
  public interface HeWeatherHistoricalService {
  
      //历史天气和空气质量
-     HeWeatherResponse getWeatherPoi(TypeEnum enum_type_code, String location, String key, String date, String lang, UnitEnum enum_unit_code, String sign);
+     HeWeatherResponse getWeatherPoi(TypeEnum enum_type_code, String location, String date, String lang, UnitEnum enum_unit_code);
  }
 ```
 
@@ -329,8 +332,6 @@
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
 |location |是  |String | 需要查询地区    | 
-|key |是  |String | 用户认证密钥    | 
-|sign |是  |String | 用户密钥    |  
 |lang |是  |string | 多语言设置    | 
 |date |是  |string | 选择日期，最多可选择最近60天的数据    | 
 
@@ -338,7 +339,7 @@
  public interface HeWeatherAstronomyService {
      
      //日出日落、月升月落和月相
-     HeWeatherResponse getSunmoon(String location, String key, String date, String lang, String sign);
+     HeWeatherResponse getSunmoon(String location, String date, String lang);
  }
 ```
 

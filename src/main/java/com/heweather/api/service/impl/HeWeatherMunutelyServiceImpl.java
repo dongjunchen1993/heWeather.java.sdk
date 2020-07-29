@@ -1,6 +1,7 @@
 package com.heweather.api.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.heweather.api.InitializeSign;
 import com.heweather.api.dto.response.HeWeatherResponse;
 import com.heweather.api.dto.response.Minutely;
 import com.heweather.api.service.HeWeatherMunutelyService;
@@ -19,11 +20,21 @@ import java.util.HashMap;
 public class HeWeatherMunutelyServiceImpl implements HeWeatherMunutelyService {
 
     @Override
-    public HeWeatherResponse getMinutely(String location, String key, String sign) {
+    public HeWeatherResponse getMinutely(String location) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://api.heweather.net/v7/minutely/5m?";
         HashMap<String, String> params = new HashMap<>();
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (location != null && !location.equals("")) {
             URL = URL + "location" + location;
             params.put("location", location);
@@ -70,11 +81,21 @@ public class HeWeatherMunutelyServiceImpl implements HeWeatherMunutelyService {
     }
 
     @Override
-    public HeWeatherResponse getMinutely(String location, String key, String lang, String sign) {
+    public HeWeatherResponse getMinutely(String location,String lang) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://api.heweather.net/v7/minutely/5m?";
         HashMap<String, String> params = new HashMap<>();
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (location != null && !location.equals("")) {
             URL = URL + "location" + location;
             params.put("location", location);

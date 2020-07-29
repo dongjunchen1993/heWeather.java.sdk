@@ -7,11 +7,11 @@ import com.heweather.api.dto.response.HeWeatherResponse;
  */
 public interface HeWeatherWarningSrevice {
     //灾害预警
-    HeWeatherResponse getWeatherWarning(String location, String key, String lang, String sign);
+    HeWeatherResponse getWeatherWarning(String location, String lang);
 
     //灾害预警
-    HeWeatherResponse getWeatherWarning(String location, String key, String sign);
+    HeWeatherResponse getWeatherWarning(String location);
 
     //灾害预警城市列表
-    HeWeatherResponse getWarningLocList(String range, String key, String sign);
+    HeWeatherResponse getWarningLocList(String range);
 }

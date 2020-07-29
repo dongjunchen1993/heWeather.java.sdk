@@ -2,6 +2,7 @@ package com.heweather.api.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.heweather.api.InitializeSign;
 import com.heweather.api.dto.response.DisasterWarning;
 import com.heweather.api.dto.response.DisasterWarningCityList;
 import com.heweather.api.dto.response.HeWeatherResponse;
@@ -22,11 +23,21 @@ import java.util.List;
 public class HeWeatherWarningSreviceImpl implements HeWeatherWarningSrevice {
 
     @Override
-    public HeWeatherResponse getWeatherWarning(String location, String key, String lang, String sign) {
+    public HeWeatherResponse getWeatherWarning(String location,String lang) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://api.heweather.net/v7/warning/now?";
         HashMap<String, String> params = new HashMap<>();
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (location != null && !location.equals("")) {
             URL = URL + "location" + location;
             params.put("location", location);
@@ -104,11 +115,21 @@ public class HeWeatherWarningSreviceImpl implements HeWeatherWarningSrevice {
     }
 
     @Override
-    public HeWeatherResponse getWeatherWarning(String location, String key, String sign) {
+    public HeWeatherResponse getWeatherWarning(String location) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://api.heweather.net/v7/warning/now?";
         HashMap<String, String> params = new HashMap<>();
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (location != null && !location.equals("")) {
             URL = URL + "location" + location;
             params.put("location", location);
@@ -179,11 +200,21 @@ public class HeWeatherWarningSreviceImpl implements HeWeatherWarningSrevice {
     }
 
     @Override
-    public HeWeatherResponse getWarningLocList(String range, String key, String sign) {
+    public HeWeatherResponse getWarningLocList(String range) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://api.heweather.net/v7/warning/list?";
         HashMap<String, String> params = new HashMap<>();
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (range != null && !range.equals("")) {
             URL = URL + "range" + range;
             params.put("range", range);

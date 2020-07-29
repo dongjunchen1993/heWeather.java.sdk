@@ -2,6 +2,7 @@ package com.heweather.api.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.heweather.api.InitializeSign;
 import com.heweather.api.dto.response.HeWeatherResponse;
 import com.heweather.api.dto.response.SunMoonData;
 import com.heweather.api.dto.response.sunmoon.MoonPhase;
@@ -22,11 +23,21 @@ import java.util.List;
  */
 public class HeWeatherAstronomyServiceImpl implements HeWeatherAstronomyService {
     @Override
-    public HeWeatherResponse getSunmoon(String location, String key, String date, String sign) {
+    public HeWeatherResponse getSunmoon(String location, String date ) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://api.heweather.net/v7/astronomy/sunmoon?";
         HashMap<String, String> params = new HashMap<>();
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (location != null && !location.equals("")) {
             URL = URL + "location" + location;
             params.put("location", location);
@@ -94,11 +105,21 @@ public class HeWeatherAstronomyServiceImpl implements HeWeatherAstronomyService 
     }
 
     @Override
-    public HeWeatherResponse getSunmoon(String location, String key, String date, String lang, String sign) {
+    public HeWeatherResponse getSunmoon(String location, String date, String lang) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://api.heweather.net/v7/astronomy/sunmoon?";
         HashMap<String, String> params = new HashMap<>();
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (location != null && !location.equals("")) {
             URL = URL + "location" + location;
             params.put("location", location);

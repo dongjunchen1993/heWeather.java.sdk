@@ -8,7 +8,7 @@ import com.heweather.api.dto.response.HeWeatherResponse;
  */
 public interface HeWeatherAstronomyService {
     //日出日落、月升月落和月相
-    HeWeatherResponse getSunmoon(String location, String key, String date, String sign);
+    HeWeatherResponse getSunmoon(String location,String date);
     //日出日落、月升月落和月相
-    HeWeatherResponse getSunmoon(String location, String key, String date, String lang, String sign);
+    HeWeatherResponse getSunmoon(String location,String date, String lang);
 }

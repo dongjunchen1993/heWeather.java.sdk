@@ -2,6 +2,7 @@ package com.heweather.api.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.heweather.api.InitializeSign;
 import com.heweather.api.dto.UnitEnum;
 import com.heweather.api.dto.ApiEnum;
 import com.heweather.api.dto.response.HeWeatherResponse;
@@ -28,10 +29,20 @@ import java.util.List;
 public class HeWeatherPoiServiceImpl implements HeWeatherPoiService {
 
     @Override
-    public HeWeatherResponse getWeatherPoi(ApiEnum apiEnum, UnitEnum enum_unit_code, String location, String key, String lang, String sign) {
+    public HeWeatherResponse getWeatherPoi(ApiEnum apiEnum, UnitEnum enum_unit_code, String location, String lang) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://api.heweather.net/v7/weather-poi/";
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (apiEnum != null) {
             URL = URL + apiEnum.getValue();
         } else {
@@ -143,10 +154,20 @@ public class HeWeatherPoiServiceImpl implements HeWeatherPoiService {
     }
 
     @Override
-    public HeWeatherResponse getWeatherPoi(ApiEnum apiEnum, String location, String key, String sign) {
+    public HeWeatherResponse getWeatherPoi(ApiEnum apiEnum, String location) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://api.heweather.net/v7/weather-poi/";
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (apiEnum != null && !apiEnum.getName().equals("")) {
             URL = URL + apiEnum.getValue();
         } else {

@@ -2,6 +2,7 @@ package com.heweather.api.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.heweather.api.InitializeSign;
 import com.heweather.api.dto.ApiEnum;
 import com.heweather.api.dto.response.AirQuality;
 import com.heweather.api.dto.response.HeWeatherResponse;
@@ -27,11 +28,21 @@ import java.util.List;
 public class HeWeatherAirServiceImpl implements HeWeatherAirService {
 
     @Override
-    public HeWeatherResponse getWeatherAir(String location, String key, String lang, ApiEnum apiEnum, String sign) {
+    public HeWeatherResponse getWeatherAir(String location, String lang, ApiEnum apiEnum) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://api.heweather.net/v7/air/";
         HashMap<String, String> params = new HashMap<>();
+        String key;
+        String sign;
+        try {
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        } catch (Exception e) {
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (apiEnum != null) {
             URL = URL + apiEnum.getValue();
         } else {
@@ -46,8 +57,8 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
             return heWeatherResponse;
         }
         if (key != null && !key.equals("")) {
-            URL = URL + "&username" + key;
-            params.put("username", key);
+            URL = URL + "&username" + InitializeSign.getKey();
+            params.put("username", InitializeSign.getKey());
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
@@ -155,7 +166,7 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
     }
 
     @Override
-    public HeWeatherResponse getWeatherAir(String location, String key, ApiEnum apiEnum, String sign) {
+    public HeWeatherResponse getWeatherAir(String location, ApiEnum apiEnum) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://api.heweather.net/v7/air/";
@@ -166,6 +177,17 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
         }
+        String key;
+        String sign;
+        try {
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        } catch (Exception e) {
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
+
         if (location != null && !location.equals("")) {
             URL = URL + "location" + location;
             params.put("location", location);
@@ -177,7 +199,7 @@ public class HeWeatherAirServiceImpl implements HeWeatherAirService {
             URL = URL + "&username" + key;
             params.put("username", key);
         } else {
-            heWeatherResponse.setStatus("400");
+            heWeatherResponse.setStatus("401");
             return heWeatherResponse;
         }
         String t = String.valueOf(System.currentTimeMillis() / 1000);

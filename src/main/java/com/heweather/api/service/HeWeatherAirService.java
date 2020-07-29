@@ -9,8 +9,8 @@ import com.heweather.api.dto.response.HeWeatherResponse;
  */
 public interface HeWeatherAirService {
     //空气质量实况
-    HeWeatherResponse getWeatherAir(String location, String key, String lang, ApiEnum apiEnum, String sign);
+    HeWeatherResponse getWeatherAir(String location, String lang, ApiEnum apiEnum);
 
     //空气质量实况
-    HeWeatherResponse getWeatherAir(String location, String key, ApiEnum apiEnum, String sign);
+    HeWeatherResponse getWeatherAir(String location, ApiEnum apiEnum);
 }

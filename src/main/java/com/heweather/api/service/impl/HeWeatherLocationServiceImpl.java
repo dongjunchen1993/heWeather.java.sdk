@@ -2,6 +2,7 @@ package com.heweather.api.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.heweather.api.InitializeSign;
 import com.heweather.api.dto.response.HeWeatherResponse;
 import com.heweather.api.dto.response.LocationInfo;
 import com.heweather.api.dto.response.PoiInfo;
@@ -24,10 +25,20 @@ import java.util.List;
 public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
 
     @Override
-    public HeWeatherResponse getLocation(String location, String key, String sign) {
+    public HeWeatherResponse getLocation(String location) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://geoapi.heweather.net/v2/city/lookup?";
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         HashMap<String, String> params = new HashMap<>();
         if (location != null && !location.equals("")) {
             URL = URL + "location" + location;
@@ -88,10 +99,20 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
     }
 
     @Override
-    public HeWeatherResponse getLocation(String location, String key, String adm, String range, Integer number, String lang, String sign) {
+    public HeWeatherResponse getLocation(String location, String adm, String range, Integer number, String lang) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://geoapi.heweather.net/v2/city/lookup?";
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         HashMap<String, String> params = new HashMap<>();
         if (location != null && !location.equals("")) {
             URL = URL + "location" + location;
@@ -180,10 +201,20 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
     }
 
     @Override
-    public HeWeatherResponse getLocation(String location, String key, String adm, String range, String sign) {
+    public HeWeatherResponse getLocation(String location,String adm, String range) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://geoapi.heweather.net/v2/city/lookup?";
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         HashMap<String, String> params = new HashMap<>();
         if (location != null && !location.equals("")) {
             URL = URL + "location" + location;
@@ -258,10 +289,20 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
     }
 
     @Override
-    public HeWeatherResponse getTopLocation(String key, String sign) {
+    public HeWeatherResponse getTopLocation() {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://geoapi.heweather.net/v2/city/top?";
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         HashMap<String, String> params = new HashMap<>();
         if (key != null && !key.equals("")) {
             URL = URL + "username" + key;
@@ -316,11 +357,21 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
     }
 
     @Override
-    public HeWeatherResponse getTopLocation(String key, String range, Integer number, String lang, String sign) {
+    public HeWeatherResponse getTopLocation(String range, Integer number, String lang) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://geoapi.heweather.net/v2/city/top?";
         HashMap<String, String> params = new HashMap<>();
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (key != null && !key.equals("")) {
             URL = URL + "username" + key;
             params.put("username", key);
@@ -331,6 +382,13 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
         if (range != null && !range.equals("")) {
             URL = URL + "&range" + range;
             params.put("range", range);
+        } else {
+            heWeatherResponse.setStatus("400");
+            return heWeatherResponse;
+        }
+        if (number != null && !number.equals("")) {
+            URL = URL + "&number" + number;
+            params.put("number", String.valueOf(number));
         } else {
             heWeatherResponse.setStatus("400");
             return heWeatherResponse;
@@ -388,11 +446,21 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
     }
 
     @Override
-    public HeWeatherResponse getTopLocation(String key, String adm, String range, String lang, String sign) {
+    public HeWeatherResponse getTopLocation(String adm, String range, String lang) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://geoapi.heweather.net/v2/city/top?";
         HashMap<String, String> params = new HashMap<>();
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (key != null && !key.equals("")) {
             URL = URL + "username" + key;
             params.put("username", key);
@@ -469,11 +537,21 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
     }
 
     @Override
-    public HeWeatherResponse getLookupPoiLocation(String location, String key, String type, String sign) {
+    public HeWeatherResponse getLookupPoiLocation(String location, String type) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://geoapi.heweather.net/v2/poi/lookup?";
         HashMap<String, String> params = new HashMap<>();
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (location != null && !location.equals("")) {
             URL = URL + "location" + location;
             params.put("location", location);
@@ -539,11 +617,21 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
     }
 
     @Override
-    public HeWeatherResponse getLookupPoiLocation(String location, String key, String type, String city, Integer number, String lang, String sign) {
+    public HeWeatherResponse getLookupPoiLocation(String location, String type, String city, Integer number, String lang) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://geoapi.heweather.net/v2/poi/lookup?";
         HashMap<String, String> params = new HashMap<>();
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (location != null && !location.equals("")) {
             URL = URL + "location" + location;
             params.put("location", location);
@@ -630,11 +718,21 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
     }
 
     @Override
-    public HeWeatherResponse getRangePoiLocation(String location, String key, String type, String sign) {
+    public HeWeatherResponse getRangePoiLocation(String location, String type) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://geoapi.heweather.net/v2/poi/range?";
         HashMap<String, String> params = new HashMap<>();
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (location != null && !location.equals("")) {
             URL = URL + "location" + location;
             params.put("location", location);
@@ -701,11 +799,21 @@ public class HeWeatherLocationServiceImpl implements HeWeatherLocationService {
     }
 
     @Override
-    public HeWeatherResponse getRangePoiLocation(String location, String key, String type, Integer radius, Integer number, String lang, String sign) {
+    public HeWeatherResponse getRangePoiLocation(String location, String type, Integer radius, Integer number, String lang) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://geoapi.heweather.net/v2/poi/range?";
         HashMap<String, String> params = new HashMap<>();
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (location != null && !location.equals("")) {
             URL = URL + "location" + location;
             params.put("location", location);

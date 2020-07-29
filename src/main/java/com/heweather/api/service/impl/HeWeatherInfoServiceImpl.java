@@ -2,6 +2,7 @@ package com.heweather.api.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.heweather.api.InitializeSign;
 import com.heweather.api.dto.ApiEnum;
 import com.heweather.api.dto.response.HeWeatherResponse;
 import com.heweather.api.dto.response.WeatherInfo;
@@ -9,7 +10,7 @@ import com.heweather.api.dto.response.weatherinfo.Daily;
 import com.heweather.api.dto.response.weatherinfo.Hourly;
 import com.heweather.api.dto.response.weatherinfo.Now;
 import com.heweather.api.dto.response.weatherinfo.Refer;
-import com.heweather.api.service.HeWertherInfoService;
+import com.heweather.api.service.HeWeatherInfoService;
 import com.heweather.utils.SignUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -24,12 +25,22 @@ import java.util.List;
  * 天气预报和实况
  * add by djc
  */
-public class HeWertherInfoServiceImpl implements HeWertherInfoService {
+public class HeWeatherInfoServiceImpl implements HeWeatherInfoService {
 
-    public HeWeatherResponse getWeatherInfo(String location, String key, ApiEnum apiEnum, String sign) {
+    public HeWeatherResponse getWeatherInfo(String location, ApiEnum apiEnum) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://api.heweather.net/v7/weather/";
+        String key;
+        String sign;
+        try{
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        }catch (Exception e){
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (apiEnum != null) {
             URL = URL + apiEnum.getValue();
         } else {
@@ -167,9 +178,19 @@ public class HeWertherInfoServiceImpl implements HeWertherInfoService {
         return heWeatherResponse;
     }
 
-    public HeWeatherResponse getWeatherInfo(String location, String key, String lang, ApiEnum apiEnum, String sign) {
+    public HeWeatherResponse getWeatherInfo(String location, String lang, ApiEnum apiEnum) {
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         String URL = "https://api.heweather.net/v7/weather/";
+        String key;
+        String sign;
+        try {
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        } catch (Exception e) {
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (apiEnum != null) {
             URL = URL + apiEnum.getValue();
         } else {

@@ -2,6 +2,7 @@ package com.heweather.api.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.heweather.api.InitializeSign;
 import com.heweather.api.dto.ApiEnum;
 import com.heweather.api.dto.response.HeWeatherResponse;
 import com.heweather.api.dto.response.WeatherIndices;
@@ -25,11 +26,22 @@ import java.util.List;
 public class HeWeatherIndicesServiceImpl implements HeWeatherIndicesService {
 
     String URL = "https://api.heweather.net/v7/indices/";
+
     @Override
-    public HeWeatherResponse getWeatherIndices(String location, String key, String type, String lang, ApiEnum apiEnum,String sign) {
+    public HeWeatherResponse getWeatherIndices(String location, String type, String lang, ApiEnum apiEnum) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         HashMap<String, String> params = new HashMap<>();
+        String key;
+        String sign;
+        try {
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        } catch (Exception e) {
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (apiEnum != null) {
             URL = URL + apiEnum.getValue();
         } else {
@@ -112,11 +124,22 @@ public class HeWeatherIndicesServiceImpl implements HeWeatherIndicesService {
         }
         return heWeatherResponse;
     }
+
     @Override
-    public HeWeatherResponse getWeatherIndices(String location, String key, String type, ApiEnum apiEnum,String sign) {
+    public HeWeatherResponse getWeatherIndices(String location, String type, ApiEnum apiEnum) {
 
         HeWeatherResponse heWeatherResponse = new HeWeatherResponse();
         HashMap<String, String> params = new HashMap<>();
+        String key;
+        String sign;
+        try {
+            key = InitializeSign.getKey();
+            sign = InitializeSign.getSign();
+        } catch (Exception e) {
+            e.printStackTrace();
+            heWeatherResponse.setStatus("4001");
+            return heWeatherResponse;
+        }
         if (apiEnum != null && !apiEnum.getName().equals("")) {
             URL = URL + apiEnum.getValue();
         } else {

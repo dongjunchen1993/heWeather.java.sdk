@@ -33,9 +33,9 @@ public class HeWeatherResponse {
     //
     private WeatherPoiInfo weatherPoiInfo;
     //
-    private WeatherAirHistory weatherHistory;
+    private WeatherHistory weatherHistory;
     //
-    private WeatherAirHistory airHistory;
+    private WeatherHistory airHistory;
     //
     private SunMoonData sunMoonData;
 
@@ -143,19 +143,19 @@ public class HeWeatherResponse {
         this.weatherPoiInfo = weatherPoiInfo;
     }
 
-    public WeatherAirHistory getWeatherHistory() {
+    public WeatherHistory getWeatherHistory() {
         return weatherHistory;
     }
 
-    public void setWeatherHistory(WeatherAirHistory weatherHistory) {
+    public void setWeatherHistory(WeatherHistory weatherHistory) {
         this.weatherHistory = weatherHistory;
     }
 
-    public WeatherAirHistory getAirHistory() {
+    public WeatherHistory getAirHistory() {
         return airHistory;
     }
 
-    public void setAirHistory(WeatherAirHistory airHistory) {
+    public void setAirHistory(WeatherHistory airHistory) {
         this.airHistory = airHistory;
     }
 
