@@ -1,4 +1,6 @@
 
+# 本SDK存在一些问题，已编写新的SDK供大家参考，[飞机票](https://github.com/dongjunchen1993/HeWeather_SDK_V7)
+
 # JAVA SDK 使用文档
 ## 本文为您介绍和风天气Java SDK的相关信息。
 ### **SDK下载**
